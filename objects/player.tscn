@@ -39,7 +39,6 @@ shape = SubResource( 1 )
 [node name="sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "walk"
-frame = 3
 playing = true
 
 [node name="pickup_area" type="Area2D" parent="."]

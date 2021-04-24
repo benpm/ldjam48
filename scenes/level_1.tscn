@@ -41,7 +41,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [sub_resource type="RectangleShape2D" id=3]
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
 region = Rect2( 16, 0, 16, 16 )
 
@@ -51,13 +51,13 @@ region = Rect2( 32, 0, 16, 16 )
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 7 ), SubResource( 5 ) ],
 "loop": true,
 "name": "main",
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
 region = Rect2( 64, 32, 16, 16 )
 
@@ -90,7 +90,7 @@ script = ExtResource( 5 )
 shape = SubResource( 3 )
 
 [node name="sprite" type="Sprite" parent="door"]
-texture = SubResource( 7 )
+texture = SubResource( 8 )
 
 [node name="player_spawn" type="Node2D" parent="."]
 position = Vector2( 199.192, 118.326 )
