@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://objects/door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/zone.gd" type="Script" id=2]
 [ext_resource path="res://tileset.tres" type="TileSet" id=3]
 
-[node name="scene" type="Node2D"]
+[node name="scene" type="YSort"]
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = -1
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -14,3 +16,6 @@ tile_data = PoolIntArray( -327683, 0, 4, -327682, 0, 4, -327681, 0, 4, -393216, 
 
 [node name="player_spawn" type="Node2D" parent="."]
 position = Vector2( 199.192, 118.326 )
+
+[node name="door" parent="." instance=ExtResource( 1 )]
+position = Vector2( 168.201, -64.0746 )

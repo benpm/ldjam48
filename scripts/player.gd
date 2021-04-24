@@ -45,9 +45,9 @@ func _process(delta):
 			add_child(held_item)
 			on_interactable = null
 		else:
-			if Input.is_action_just_pressed("interact"):
+			if Input.is_action_just_pressed("interact") and (held_item == null or on_interactable.can_interact_holding):
 				# Interact with object
-				on_interactable.interacted_with()
+				on_interactable.interacted_with(held_item)
 
 func _physics_process(delta):
 	vel = move_and_slide(vel * 60) / 60

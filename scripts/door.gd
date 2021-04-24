@@ -1,16 +1,10 @@
 extends Interactable
 
+var locked = true
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func interacted_with(item):
+	.interacted_with(item)
+	if item.name == "key":
+		locked = false
+		$sprite_manager/animator.current_animation = "door_unlocked"
+		item.get_parent().remove_child(item)

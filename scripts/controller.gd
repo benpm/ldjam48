@@ -13,7 +13,7 @@ var main_camera: Camera2D
 
 var fade_amnt := 0.0
 var goto_timer := 0.0
-var goto_speed := 0.125
+var goto_speed := 0.25
 var goto_campos: Vector2
 var goto_zonename: String
 var goto_into: bool
@@ -41,7 +41,7 @@ func _ready() -> void:
 
 func goto_zone_animate(zone_name: String, into: bool, move_to: Node2D):
 	if goto_timer <= 0.0:
-		goto_timer = 0.5
+		goto_timer = 0.35
 		goto_zonename = zone_name
 		goto_into = into
 		goto_moveto = move_to

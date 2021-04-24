@@ -1,20 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://objects/sprite_manager.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/exit.gd" type="Script" id=2]
+[ext_resource path="res://scripts/item.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="exit" type="Area2D"]
+[node name="key" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="sprite_manager" parent="." instance=ExtResource( 1 )]
-position = Vector2( 0, -54.0575 )
-
-[node name="sprite" parent="sprite_manager" index="0"]
-region_rect = Rect2( 39, 0, 38, 144 )
 
 [editable path="sprite_manager"]
