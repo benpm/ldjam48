@@ -57,12 +57,13 @@ func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 		player.position = move_to.position
 		
 	# Add exit
-	if into and not current_zone.has_node("exit"):
-		var exit = exit_tscn.instance()
+	if into:
+		if not current_zone.has_node("exit"):
+			current_zone.add_child(exit_tscn.instance())
+		var exit = current_zone.get_node("exit")
 		exit.exit_to = last_zone_name
 		exit.position = current_zone.get_node("player_spawn").position
 		exit.exit_node = move_to
-		current_zone.add_child(exit)
 	
 	print_debug("now inside ", zone_name)
 

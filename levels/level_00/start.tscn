@@ -81,6 +81,18 @@ shape = SubResource( 3 )
 frames = SubResource( 6 )
 animation = "main"
 
+[node name="sack2" type="Area2D" parent="."]
+position = Vector2( 88.8277, 128.05 )
+script = ExtResource( 4 )
+to_zone = "B"
+
+[node name="collider" type="CollisionShape2D" parent="sack2"]
+shape = SubResource( 3 )
+
+[node name="sprite" type="AnimatedSprite" parent="sack2"]
+frames = SubResource( 6 )
+animation = "main"
+
 [node name="door" type="Area2D" parent="."]
 position = Vector2( 157.84, 29.1306 )
 script = ExtResource( 5 )
