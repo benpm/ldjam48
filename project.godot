@@ -20,20 +20,20 @@ _global_script_classes=[ {
 "path": "res://scripts/item.gd"
 }, {
 "base": "Node2D",
-"class": "Level",
+"class": "Zone",
 "language": "GDScript",
-"path": "res://scripts/level.gd"
+"path": "res://scripts/zone.gd"
 } ]
 _global_script_class_icons={
 "Interactable": "",
 "Item": "",
-"Level": ""
+"Zone": ""
 }
 
 [application]
 
 config/name="ldjam48"
-run/main_scene="res://scenes/test_scene.tscn"
+run/main_scene="res://levels/level_00/start.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -51,6 +51,10 @@ window/stretch/aspect="expand"
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/integer_resolution_handler/plugin.cfg" )
+
+[global]
+
+scene=false
 
 [input]
 
