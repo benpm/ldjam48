@@ -11,6 +11,14 @@ var level_dir: String
 var player: Node2D
 var main_camera: Camera2D
 
+var fade_amnt := 0.0
+var goto_timer := 0.0
+var goto_speed := 0.125
+var goto_campos: Vector2
+var goto_zonename: String
+var goto_into: bool
+var goto_moveto: Node2D
+
 # Called on game start
 func _ready() -> void:
 	# Starting zone
@@ -30,6 +38,13 @@ func _ready() -> void:
 	# Add main camera
 	main_camera = main_camera_tscn.instance()
 	current_zone.add_child(main_camera)
+
+func goto_zone_animate(zone_name: String, into: bool, move_to: Node2D):
+	if goto_timer <= 0.0:
+		goto_timer = 0.5
+		goto_zonename = zone_name
+		goto_into = into
+		goto_moveto = move_to
 
 func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 	var last_zone_name = current_zone.zone_name
@@ -55,6 +70,7 @@ func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 		player.position = current_zone.get_node("player_spawn").position
 	else:
 		player.position = move_to.position
+	main_camera.position = player.position
 		
 	# Add exit
 	if into:
@@ -71,4 +87,12 @@ func goto_level(level_num: int):
 	pass
 
 func _process(delta):
-	pass
+	if goto_timer > 0.0:
+		goto_timer -= delta
+		fade_amnt = lerp(fade_amnt, 1.0, goto_speed)
+		main_camera.fade(fade_amnt)
+		if goto_timer <= 0.0:
+			goto_timer = 0.0
+			fade_amnt = 0.0
+			goto_zone(goto_zonename, goto_into, goto_moveto)
+			main_camera.fade(0.0)

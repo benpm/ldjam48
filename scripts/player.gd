@@ -5,7 +5,7 @@ var speed: float = 2
 var on_interactable: Interactable = null
 var held_item: Item = null
 
-onready var anim: AnimatedSprite = $sprite
+onready var anim: AnimationPlayer = $animator
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +24,8 @@ func _process(delta):
 	if Input.is_action_pressed("down"):
 		vel.y = speed
 	
-	anim.speed_scale = vel.length()
+	anim.current_animation = "walk_down"
+	anim.playback_speed = vel.length()
 	
 	if on_interactable == null:
 		if held_item != null and Input.is_action_just_pressed("pick up"):
@@ -38,7 +39,7 @@ func _process(delta):
 		if on_interactable.is_type("Item") and held_item == null and Input.is_action_just_pressed("pick up"):
 			# Pick up item
 			held_item = on_interactable
-			held_item.position = Vector2(0, 0)
+			held_item.position = Vector2(0, -8)
 			held_item.picked_up()
 			held_item.get_parent().remove_child(held_item)
 			add_child(held_item)

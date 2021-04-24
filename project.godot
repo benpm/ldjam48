@@ -9,6 +9,21 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AsepriteImportData",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/AsepriteImportData.gd"
+}, {
+"base": "Node",
+"class": "AsepriteImporter",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/AsepriteImporter.gd"
+}, {
+"base": "Node",
+"class": "EditorTheme",
+"language": "GDScript",
+"path": "res://addons/aseprite_importer/classes/EditorTheme.gd"
+}, {
 "base": "Area2D",
 "class": "Interactable",
 "language": "GDScript",
@@ -25,6 +40,9 @@ _global_script_classes=[ {
 "path": "res://scripts/zone.gd"
 } ]
 _global_script_class_icons={
+"AsepriteImportData": "",
+"AsepriteImporter": "",
+"EditorTheme": "",
 "Interactable": "",
 "Item": "",
 "Zone": ""
@@ -50,7 +68,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/integer_resolution_handler/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/aseprite_importer/plugin.cfg", "res://addons/integer_resolution_handler/plugin.cfg" )
 
 [global]
 
@@ -100,4 +118,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+environment/default_clear_color=Color( 0.054902, 0.054902, 0.054902, 1 )
 environment/default_environment="res://default_env.tres"

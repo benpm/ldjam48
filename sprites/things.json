@@ -1,0 +1,36 @@
+{ "frames": {
+   "things 0.aseprite": {
+    "frame": { "x": 0, "y": 0, "w": 27, "h": 144 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 114, "y": 43, "w": 25, "h": 142 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   "things 1.aseprite": {
+    "frame": { "x": 28, "y": 0, "w": 27, "h": 144 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 114, "y": 43, "w": 25, "h": 142 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21-x64",
+  "image": "things.png",
+  "format": "RGBA8888",
+  "size": { "w": 55, "h": 144 },
+  "scale": "1",
+  "frameTags": [
+   { "name": "bag", "from": 0, "to": 0, "direction": "forward" },
+   { "name": "rope", "from": 1, "to": 1, "direction": "forward" }
+  ],
+  "layers": [
+   { "name": "fg", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}

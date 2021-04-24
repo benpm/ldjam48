@@ -1,34 +1,64 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://sprites/tiles.png" type="Texture" id=1]
+[ext_resource path="res://sprites/player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.89384, 6.70866 )
+extents = Vector2( 7.43573, 6.70866 )
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 16, 16, 16 )
+[sub_resource type="Animation" id=2]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 25, 37 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, -12.5 ) ]
+}
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 16, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 32, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 1 )
-region = Rect2( 48, 16, 16, 16 )
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
-"loop": true,
-"name": "walk",
-"speed": 15.0
-} ]
+[sub_resource type="Animation" id=3]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Rect2( 26, 0, 25, 37 ), Rect2( 0, 0, 25, 37 ), Rect2( 0, 38, 25, 37 ), Rect2( 0, 0, 25, 37 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, -12.5 ), Vector2( 0.5, -12.5 ), Vector2( 0.5, -12.5 ), Vector2( 0.5, -12.5 ) ]
+}
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -36,10 +66,15 @@ script = ExtResource( 2 )
 [node name="collider" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="sprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 6 )
-animation = "walk"
-playing = true
+[node name="sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0.5, -12.5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 25, 37 )
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/idle_down = SubResource( 2 )
+anims/walk_down = SubResource( 3 )
 
 [node name="pickup_area" type="Area2D" parent="."]
 
