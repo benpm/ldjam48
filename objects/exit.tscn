@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/tiles.png" type="Texture" id=1]
+[ext_resource path="res://scripts/exit.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 160, 16, 96 )
+
+[node name="exit" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+position = Vector2( 0, -44.5953 )
+texture = SubResource( 2 )
