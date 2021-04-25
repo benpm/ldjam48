@@ -21,6 +21,10 @@ var goto_moveto: Node2D
 
 # Called on game start
 func _ready() -> void:
+	# start_level called by Zone on tree enter
+	pass
+
+func start_level():
 	# Starting zone
 	current_zone = $"/root/scene"
 	print_debug(current_zone.zone_name)
@@ -83,8 +87,12 @@ func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 	
 	print_debug("now inside ", zone_name)
 
-func goto_level(level_num: int):
-	pass
+func goto_level(level_name: String):
+	current_zone.get_parent().remove_child(current_zone)
+	current_zone = null
+	zones.clear()
+	var err = get_tree().change_scene("res://levels/%s/start.tscn" % level_name)
+	assert(err == OK)
 
 func _process(delta):
 	if goto_timer > 0.0:

@@ -49,17 +49,22 @@ func _process(delta):
 				# Interact with object
 				on_interactable.interacted_with(held_item)
 
+func used_held_item():
+	remove_child(held_item)
+	held_item = null
+	print_debug("used item")
+
 func _physics_process(delta):
 	vel = move_and_slide(vel * 60) / 60
 	for i in get_slide_count():
 		var col = get_slide_collision(i)
 
 func _on_interactable(area: Area2D) -> void:
-	print(area.name, area.get_type())
+	print_debug("player step on ", area.name, area.get_type())
 	if area != held_item:
 		on_interactable = area
-	print_debug(area.name)
 
 func _off_interactable(area: Area2D) -> void:
 	on_interactable = null
+	print_debug("player step off ", area.name, area.get_type())
 
