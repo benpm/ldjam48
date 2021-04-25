@@ -20,8 +20,14 @@ tile_data = PoolIntArray( 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 4, 5, 0, 4, 
 [node name="player_spawn" type="Node2D" parent="."]
 position = Vector2( 73.8705, 113.334 )
 
+[node name="treadmill" parent="." instance=ExtResource( 6 )]
+position = Vector2( 144, 112 )
+
+[node name="treadmill2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 176, 112 )
+
 [node name="press_plate" parent="." instance=ExtResource( 2 )]
-position = Vector2( 160, 108 )
+position = Vector2( 160, 112 )
 trigger_args = {
 "number": 3
 }
@@ -37,11 +43,5 @@ to_zone = "two"
 position = Vector2( 248, 208 )
 z_index = -1
 to_zone = "two"
-
-[node name="treadmill" parent="." instance=ExtResource( 6 )]
-position = Vector2( 112, 112 )
-
-[node name="treadmill2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 208, 112 )
 
 [editable path="press_plate"]

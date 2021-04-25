@@ -23,17 +23,17 @@ tile_data = PoolIntArray( -327682, 0, 6, -327681, 0, 6, -393216, 0, 6, -393215, 
 position = Vector2( 72, 120 )
 
 [node name="treadmill" parent="." instance=ExtResource( 1 )]
-position = Vector2( 112, 64 )
+position = Vector2( 144, 64 )
 
 [node name="treadmill2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 208, 64 )
+position = Vector2( 176, 64 )
 
 [node name="treadmill3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 208, 176 )
+position = Vector2( 176, 176 )
 rotation = 3.14159
 
 [node name="treadmill4" parent="." instance=ExtResource( 1 )]
-position = Vector2( 112, 176 )
+position = Vector2( 144, 176 )
 rotation = 3.14159
 
 [node name="toggle_plate" parent="." groups=[
