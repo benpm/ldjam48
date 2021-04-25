@@ -15,6 +15,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -54.0575 )
 
 [node name="sprite" parent="sprite_manager" index="0"]
-region_rect = Rect2( 39, 0, 38, 144 )
+offset = Vector2( -0.5, -14 )
+region_rect = Rect2( 101, 0, 11, 144 )
 
 [editable path="sprite_manager"]

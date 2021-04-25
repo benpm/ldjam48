@@ -3,6 +3,7 @@ extends KinematicBody2D
 var vel: Vector2
 var speed: float = 2
 var on_interactable: Interactable = null
+var on_trigger: Trigger = null
 var held_item: Item = null
 
 onready var anim: AnimationPlayer = $animator
@@ -59,12 +60,23 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var col = get_slide_collision(i)
 
-func _on_interactable(area: Area2D) -> void:
+func _on_intersect_area(area: Area2D) -> void:
 	print_debug("player step on ", area.name, area.get_type())
 	if area != held_item:
-		on_interactable = area
+		match area.get_type():
+			"Interactable":
+				on_interactable = area
+			"Trigger":
+				on_trigger = area
+				area.trigger(self)
 
-func _off_interactable(area: Area2D) -> void:
-	on_interactable = null
+func _off_intersect_area(area: Area2D) -> void:
 	print_debug("player step off ", area.name, area.get_type())
+	if area != held_item:
+		match area.get_type():
+			"Interactable":
+				on_interactable = null
+			"Trigger":
+				on_trigger = null
+				area.untrigger(self)
 

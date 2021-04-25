@@ -81,5 +81,5 @@ anims/walk_down = SubResource( 3 )
 [node name="collider" type="CollisionShape2D" parent="pickup_area"]
 shape = SubResource( 1 )
 
-[connection signal="area_entered" from="pickup_area" to="." method="_on_interactable"]
-[connection signal="area_exited" from="pickup_area" to="." method="_off_interactable"]
+[connection signal="area_entered" from="pickup_area" to="." method="_on_intersect_area"]
+[connection signal="area_exited" from="pickup_area" to="." method="_off_intersect_area"]

@@ -7,6 +7,7 @@ const exit_tscn: PackedScene = preload("res://objects/exit.tscn")
 var zones: Dictionary
 var current_zone: Node2D
 var level_dir: String
+var level_controller: Node
 
 var player: Node2D
 var main_camera: Camera2D
@@ -42,6 +43,14 @@ func start_level():
 	# Add main camera
 	main_camera = main_camera_tscn.instance()
 	current_zone.add_child(main_camera)
+
+func ready_level():
+	# Level controller
+	if current_zone.has_node("level_controller"):
+		level_controller = current_zone.get_node("level_controller")
+		level_controller.get_parent().remove_child(level_controller)
+		self.add_child(level_controller)
+		print_debug("ready level")
 
 func goto_zone_animate(zone_name: String, into: bool, move_to: Node2D):
 	if goto_timer <= 0.0:
@@ -85,9 +94,16 @@ func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 		exit.position = current_zone.get_node("player_spawn").position
 		exit.exit_node = move_to
 	
+	# Notify level controller
+	if level_controller != null:
+		level_controller.zone_change()
+	
 	print_debug("now inside ", zone_name)
 
 func goto_level(level_name: String):
+	if level_controller != null:
+		level_controller.get_parent().remove_child(level_controller)
+		level_controller = null
 	current_zone.get_parent().remove_child(current_zone)
 	current_zone = null
 	zones.clear()

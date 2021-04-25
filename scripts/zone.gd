@@ -9,6 +9,9 @@ func _enter_tree():
 	if get_zone_name() == "start":
 		$"/root/Controller".start_level()
 
+func _ready():
+	$"/root/Controller".ready_level()
+
 func get_zone_name() -> String:
 	if not zone_name:
 		var path = get_tree().current_scene.filename
