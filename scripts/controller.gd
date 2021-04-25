@@ -8,6 +8,7 @@ var zones: Dictionary
 var current_zone: Node2D
 var level_dir: String
 var level_controller: Node
+var level_name: String
 
 var player: Node2D
 var main_camera: Camera2D
@@ -38,7 +39,8 @@ func start_level():
 	
 	# Level directory
 	level_dir = get_tree().current_scene.filename.get_base_dir()
-	print_debug("level dir = ", level_dir)
+	level_name = level_dir.get_file()
+	print_debug("level dir = %s, level name = %s" % [level_dir, level_name])
 	
 	# Add player
 	player = player_tscn.instance()
@@ -108,6 +110,7 @@ func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 	print_debug("now inside ", zone_name)
 
 func goto_level(level_name: String):
+	self.level_name = level_name
 	if level_controller != null:
 		level_controller.get_parent().remove_child(level_controller)
 		level_controller = null
@@ -117,6 +120,10 @@ func goto_level(level_name: String):
 	zones.clear()
 	var err = get_tree().change_scene("res://levels/%s/start.tscn" % level_name)
 	assert(err == OK)
+
+func _input(event):
+	if event.is_action_pressed("restart"):
+		goto_level(level_name)
 
 func _process(delta):
 	if goto_timer > 0.0:
