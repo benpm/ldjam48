@@ -13,9 +13,4 @@ shape = SubResource( 1 )
 
 [node name="sprite_manager" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, -54.0575 )
-
-[node name="sprite" parent="sprite_manager" index="0"]
-offset = Vector2( -0.5, -14 )
-region_rect = Rect2( 101, 0, 11, 144 )
-
-[editable path="sprite_manager"]
+animation = "rope"

@@ -13,13 +13,9 @@ func zone_change():
 	var zone = $"/root/scene"
 	var press_plate: Trigger = zone.get_node("press_plate")
 	press_plate.connect("trigger_on", self, "press_number")
-	print_debug("connnectoi4otgnaeorgnenrgo")
+	update_display_tiles()
 
-func press_number(who: Node2D, data: Dictionary):
-	if combo_correct:
-		return
-	pressed.append(data["number"])
-	print_debug("level controller pressed: ", pressed)
+func update_display_tiles():
 	var tilemap: TileMap = $"/root/scene".get_node("TileMap")
 	for i in range(3):
 		var value := 0
@@ -29,6 +25,13 @@ func press_number(who: Node2D, data: Dictionary):
 			display_tilemap_coords[i].x,
 			display_tilemap_coords[i].y, 0, false, false, false,
 			display_tileset_coords[value])
+
+func press_number(who: Node2D, data: Dictionary):
+	if combo_correct:
+		return
+	pressed.append(data["number"])
+	update_display_tiles()
+	print_debug("level controller pressed: ", pressed)
 	if pressed.size() == 3:
 		if pressed[0] == 1 and pressed[1] == 2 and pressed[2] == 3:
 			print_debug("WEINER")

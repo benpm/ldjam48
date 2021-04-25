@@ -1,6 +1,6 @@
 extends Interactable
 
-var to_zone: String
+export(String) var to_zone
 
 func interacted_with(item: Item):
 	.interacted_with(item)

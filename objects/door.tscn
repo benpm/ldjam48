@@ -12,9 +12,4 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="sprite_manager" parent="." instance=ExtResource( 1 )]
-
-[node name="sprite" parent="sprite_manager" index="0"]
-offset = Vector2( 0, -24.5 )
-region_rect = Rect2( 62, 0, 38, 61 )
-
-[editable path="sprite_manager"]
+animation = "door_locked"

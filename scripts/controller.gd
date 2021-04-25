@@ -26,6 +26,9 @@ func _ready() -> void:
 	pass
 
 func start_level():
+	if current_zone != null:
+		return
+	
 	# Starting zone
 	current_zone = $"/root/scene"
 	print_debug(current_zone.zone_name)
@@ -45,6 +48,8 @@ func start_level():
 	current_zone.add_child(main_camera)
 
 func ready_level():
+	assert(current_zone != null, "start from the start scene!")
+	
 	# Level controller
 	if current_zone.has_node("level_controller"):
 		level_controller = current_zone.get_node("level_controller")

@@ -12,5 +12,4 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="sprite_manager" parent="." instance=ExtResource( 1 )]
-
-[editable path="sprite_manager"]
+animation = "press_plate"

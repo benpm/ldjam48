@@ -23,6 +23,8 @@ to_zone = "B"
 
 [node name="sprite" parent="sack2/sprite_manager" index="0"]
 modulate = Color( 1, 0.74902, 0, 1 )
+offset = Vector2( -1.5, -7.5 )
+region_rect = Rect2( 152, 0, 29, 27 )
 
 [node name="player_spawn" type="Node2D" parent="."]
 position = Vector2( 144.113, 163.734 )
