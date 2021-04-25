@@ -1,9 +1,10 @@
 extends Trigger
 
-export(bool) var toggle = false
 export(Dictionary) var trigger_args
 
 onready var start_animation: String = $sprite_manager.animation
+
+var toggle_state := false
 
 func trigger(who: Node2D, data = null):
 	if data == null:
@@ -11,10 +12,8 @@ func trigger(who: Node2D, data = null):
 	for k in trigger_args:
 		data[k] = trigger_args[k]
 	.trigger(who, data)
-#	$sprite_manager/animator.play(start_animation, -1, 0.0)
-	$sprite_manager/animator.seek(0.15, true)
+	$sprite_manager.set_frame(1)
 
 func untrigger(who: Node2D, data = null):
 	.untrigger(who, data)
-#	$sprite_manager/animator.play(start_animation, -1, 0.0)
-	$sprite_manager/animator.seek(0.05, true)
+	$sprite_manager.set_frame(0)
