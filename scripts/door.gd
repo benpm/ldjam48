@@ -1,6 +1,6 @@
 extends Interactable
 
-var locked = true
+export(bool) var locked = true
 
 export(String) var to_level
 

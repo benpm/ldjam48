@@ -15,3 +15,7 @@ func set_animation(v: String):
 			animation = v
 		else:
 			push_warning("'%s' not valid animation name" % v)
+
+func set_frame(frame: int):
+	$animator.play(animation, -1, $animator.playback_speed)
+	$animator.seek(frame * 0.100, true)

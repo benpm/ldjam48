@@ -61,22 +61,24 @@ func _physics_process(delta):
 		var col = get_slide_collision(i)
 
 func _on_intersect_area(area: Area2D) -> void:
-	print_debug("player step on ", area.name, area.get_type())
-	if area != held_item:
-		match area.get_type():
-			"Interactable", "Item":
-				on_interactable = area
-			"Trigger":
-				on_trigger = area
-				area.trigger(self)
+	if area.has_method("get_type"):
+		print_debug("player step on ", area.name, area.get_type())
+		if area != held_item:
+			match area.get_type():
+				"Interactable", "Item":
+					on_interactable = area
+				"Trigger":
+					on_trigger = area
+					area.trigger(self)
 
 func _off_intersect_area(area: Area2D) -> void:
-	print_debug("player step off ", area.name, area.get_type())
-	if area != held_item:
-		match area.get_type():
-			"Interactable", "Item":
-				on_interactable = null
-			"Trigger":
-				on_trigger = null
-				area.untrigger(self)
+	if area.has_method("get_type"):
+		print_debug("player step off ", area.name, area.get_type())
+		if area != held_item:
+			match area.get_type():
+				"Interactable", "Item":
+					on_interactable = null
+				"Trigger":
+					on_trigger = null
+					area.untrigger(self)
 

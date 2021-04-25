@@ -6,7 +6,10 @@ var combo_correct: bool = false
 const display_tilemap_coords := [Vector2(13, 10), Vector2(15, 10), Vector2(17, 10)]
 const display_tileset_coords := [Vector2(8, 0), Vector2(9, 0), Vector2(10, 0), Vector2(11, 0)]
 
+onready var door = $door
+
 func _ready():
+	remove_child(door)
 	zone_change()
 
 func zone_change():
@@ -34,7 +37,8 @@ func press_number(who: Node2D, data: Dictionary):
 	print_debug("level controller pressed: ", pressed)
 	if pressed.size() == 3:
 		if pressed[0] == 1 and pressed[1] == 2 and pressed[2] == 3:
-			print_debug("WEINER")
+			$"/root/scene".add_child(door)
+			door.show()
 			combo_correct = true
 		else:
 			pressed.clear()

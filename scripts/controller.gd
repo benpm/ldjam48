@@ -20,6 +20,8 @@ var goto_zonename: String
 var goto_into: bool
 var goto_moveto: Node2D
 
+var sack_count := 0
+
 # Called on game start
 func _ready() -> void:
 	# start_level called by Zone on tree enter
@@ -111,6 +113,7 @@ func goto_level(level_name: String):
 		level_controller = null
 	current_zone.get_parent().remove_child(current_zone)
 	current_zone = null
+	sack_count = 0
 	zones.clear()
 	var err = get_tree().change_scene("res://levels/%s/start.tscn" % level_name)
 	assert(err == OK)
