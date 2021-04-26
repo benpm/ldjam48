@@ -3,11 +3,13 @@ extends Camera2D
 onready var player = $"../player"
 onready var controller = $"/root/Controller"
 
-onready var overlay: ColorRect = $overlay
+onready var transition_mask: Sprite = $transition_mask
 
-func _process(delta):
-	position = lerp(position, player.position, 0.2)
+onready var target: Node2D = player
 
-func fade(amount: float):
-	overlay.color.a = amount
-	zoom = lerp(Vector2(1.0, 1.0), Vector2(0.35, 0.35), amount)
+
+func _process(_delta):
+	position = lerp(position, target.position, 0.2)
+
+func scale_mask(v: float):
+	transition_mask.scale = Vector2(v, v)

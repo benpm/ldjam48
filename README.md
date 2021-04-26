@@ -25,7 +25,7 @@
 - [x] Tall walls
 - [x] Show object behind tall walls
 - [ ] More levels
-  - [ ] Harder recursive level
+  - [x] Harder recursive level
     - Only one solution: have to bring bags through in the exact right order
   - [ ] Box / hole intro level
   - [x] Harder button-order level

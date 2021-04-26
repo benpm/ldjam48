@@ -5,7 +5,7 @@
 [ext_resource path="res://sprites/shadow.png" type="Texture" id=3]
 [ext_resource path="res://sprites/mask.png" type="Texture" id=4]
 
-[sub_resource type="RectangleShape2D" id=14]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.19741, 3.39975 )
 
 [sub_resource type="Animation" id=2]
@@ -332,14 +332,14 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -13 ), Vector2( 0, -13 ), Vector2( 0, -13 ), Vector2( 0, -13 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 6, 6 )
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="collider" type="CollisionShape2D" parent="."]
-shape = SubResource( 14 )
+shape = SubResource( 1 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -365,7 +365,7 @@ anims/walk_up = SubResource( 13 )
 
 [node name="collider" type="CollisionShape2D" parent="pickup_area"]
 position = Vector2( 0, 8 )
-shape = SubResource( 1 )
+shape = SubResource( 14 )
 
 [node name="shadow" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.490196 )
