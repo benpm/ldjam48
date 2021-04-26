@@ -29,4 +29,4 @@ position = Vector2( 64, 112 )
 
 [node name="door" parent="." instance=ExtResource( 1 )]
 position = Vector2( 152, 32 )
-to_level = "level_00"
+to_level = "level_01_basics"

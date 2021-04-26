@@ -57,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ldjam48"
-run/main_scene="res://levels/level_intro/start.tscn"
+run/main_scene="res://levels/level_00_intro/start.tscn"
 config/icon="res://icon.png"
 
 [autoload]

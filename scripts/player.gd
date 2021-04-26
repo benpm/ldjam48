@@ -81,7 +81,7 @@ func _process(delta):
 			$shadow.scale = shadow_scale
 			held_item = null
 	
-	if Input.is_action_just_pressed("interact"):
+	if on_interactable.size() > 0 and Input.is_action_just_pressed("interact"):
 		on_interactable.front().interacted_with(held_item)
 	
 	if held_item:
