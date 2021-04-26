@@ -28,7 +28,7 @@
   - [ ] Harder recursive level
     - Only one solution: have to bring bags through in the exact right order
   - [ ] Box / hole intro level
-  - [ ] Harder button-order level
+  - [x] Harder button-order level
 - [ ] Zooming animation for going into bags
   - Use Tween nodes?
   - Need different animation for going up ladder, into box / hole, through door

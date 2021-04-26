@@ -37,7 +37,7 @@ position = Vector2( 160, 0 )
 
 [node name="door" parent="." instance=ExtResource( 1 )]
 position = Vector2( 160, -104 )
-to_level = "level_end"
+to_level = "level_05_recursiontwo"
 
 [node name="treadmill" parent="." instance=ExtResource( 3 )]
 position = Vector2( 224, 112 )
