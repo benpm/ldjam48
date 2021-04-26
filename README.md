@@ -12,7 +12,7 @@
 ## Todo
 
 ### Fix
-- [ ] Resolve issue when on multiple interactable hitboxes (don't cancel if an action can be taken)
+- [x] Resolve issue when on multiple interactable hitboxes (don't cancel if an action can be taken)
   - Items push each other around to avoid piling?
 - [x] Diagonal movement faster than lateral
 - [ ] Make it so you can walk through door

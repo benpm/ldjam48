@@ -67,6 +67,7 @@ func goto_zone_animate(zone_name: String, into: bool, move_to: Node2D):
 		goto_zonename = zone_name
 		goto_into = into
 		goto_moveto = move_to
+		player.frozen = true
 
 func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 	var last_zone_name = current_zone.zone_name
@@ -90,8 +91,9 @@ func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 		player.position = current_zone.get_node("player_spawn").position
 	else:
 		player.position = move_to.position
+	player.frozen = false
 	main_camera.position = player.position
-	
+
 	current_zone.add_child(player)
 	current_zone.add_child(main_camera)
 		

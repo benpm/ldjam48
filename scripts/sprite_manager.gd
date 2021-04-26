@@ -4,6 +4,8 @@ extends Node2D
 
 export (String) var animation = "ex" setget set_animation
 
+var outline: Color = Color.transparent setget set_outline
+
 func _ready():
 	$animator.play(animation, -1, 0.0)
 	$animator.advance(0.0)
@@ -21,3 +23,9 @@ func set_animation(v: String):
 func set_frame(frame: int):
 	$animator.play(animation, -1, $animator.playback_speed)
 	$animator.seek(frame * 0.100, true)
+
+func set_outline(color: Color):
+	outline = color
+	if not $sprite.material:
+		$sprite.material = load("res://outline.tres").duplicate()
+	$sprite.material.set_shader_param("outline_color", outline)

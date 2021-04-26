@@ -7,6 +7,7 @@ var on_interactable: Interactable = null
 var on_item: Item = null
 var on_trigger: Trigger = null
 var held_item: Item = null
+var frozen: bool = false
 
 onready var shadow_scale: Vector2 = $shadow.scale
 
@@ -20,6 +21,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if frozen:
+		vel = Vector2(0, 0)
+		return
+	
 	vel = Vector2(0, 0)
 	if Input.is_action_pressed("left"):
 		vel.x = -speed
@@ -106,8 +111,13 @@ func _on_intersect_area(area: Area2D) -> void:
 		if area != held_item:
 			if area.is_type("Interactable"):
 				on_interactable = area
+				var color = Color.white
+				if not on_interactable.can_interact(held_item):
+					color = Color.red
+				area.get_node("sprite_manager").outline = color
 			if area.is_type("Item"):
 				on_item = area
+				area.get_node("sprite_manager").outline = Color.white
 			if area.is_type("Trigger"):
 				on_trigger = area
 				area.trigger(self)
@@ -116,9 +126,11 @@ func _off_intersect_area(area: Area2D) -> void:
 	if area.has_method("get_type"):
 		if area != held_item:
 			if area.is_type("Interactable") and area == on_interactable:
+				area.get_node("sprite_manager").outline = Color.transparent
 				on_interactable = null
 				print_debug("exit ", area.name)
 			if area.is_type("Item") and area == on_item:
+				area.get_node("sprite_manager").outline = Color.transparent
 				on_item = null
 			if area.is_type("Trigger") and area == on_trigger:
 				on_trigger = null

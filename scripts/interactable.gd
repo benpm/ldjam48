@@ -10,3 +10,6 @@ var can_interact_holding := true
 
 func interacted_with(item):
 	print_debug("%s Interactable: interacted with" % name)
+
+func can_interact(item) -> bool:
+	return true
