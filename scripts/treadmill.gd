@@ -5,10 +5,7 @@ export (float) var speed = 4.0
 
 
 func _ready():
-	var anim = $sprite_manager/animator
-	anim.stop()
-	anim.get_animation($sprite_manager.animation).loop = true
-	anim.play($sprite_manager.animation, -1, speed)
+	$sprite_manager.anim_speed = speed / 4.0
 
 func _physics_process(delta):
 	var bodies = get_overlapping_bodies()

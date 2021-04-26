@@ -70,6 +70,7 @@ func _process(delta):
 			var item_shadow = held_item.get_node("sprite_manager/shadow")
 			item_shadow.hide()
 			$shadow.scale = item_shadow.scale
+			on_interactable.erase(held_item)
 		elif held_item:
 			# Set down item
 			held_item.position = pickup_area.get_node("collider").global_position

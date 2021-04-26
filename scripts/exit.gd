@@ -9,3 +9,6 @@ func _ready():
 func interacted_with(item: Item):
 	.interacted_with(item)
 	controller.goto_zone_animate(exit_to, false, exit_node)
+
+func can_interact(item) -> bool:
+	return item == null

@@ -17,12 +17,13 @@
 - [x] Diagonal movement faster than lateral
 - [x] Indicators for when you cant interact with held item
 - [x] Fix enter bag during transition time
-- [ ] Multiple items together walking through makes outline stay
+- [x] Multiple items together walking through makes outline stay
+- [ ] Mask out of front-facing walls
 
 ### Priority
 - [x] Recursive level
 - [x] Tall walls
-- [ ] Show object behind tall walls
+- [x] Show object behind tall walls
 - [ ] More levels
   - [ ] Harder recursive level
     - Only one solution: have to bring bags through in the exact right order
@@ -31,6 +32,7 @@
 - [ ] Zooming animation for going into bags
   - Use Tween nodes?
   - Need different animation for going up ladder, into box / hole, through door
+  - Add target zone scene as child of bag, bag open animation, player shrink into bag, zoom in, fade out parent scene, play climb-down ladder anim, make zone new root scene
 
 ### Next
 - [ ] Animation for climbing up / down ladders
