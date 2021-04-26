@@ -13,13 +13,13 @@ func _ready():
 
 func interacted_with(item):
 	.interacted_with(item)
-	print_debug(item)
-	if can_interact(item) and locked:
-		locked = false
-		$sprite_manager/animator.play("door_unlocked")
-		item.get_parent().used_held_item()
-	elif item == null and not locked:
-		controller.goto_level(to_level)
+	if can_interact(item):
+		if locked:
+			locked = false
+			$sprite_manager/animator.play("door_unlocked")
+			item.get_parent().used_held_item()
+		else:
+			controller.goto_level(to_level)
 
 func can_interact(item) -> bool:
 	return not locked or (item != null and item.name == "key")

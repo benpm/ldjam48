@@ -3,9 +3,9 @@ extends KinematicBody2D
 var vel: Vector2
 var facing: Vector2
 var speed: float = 2.5
-var on_interactable: Interactable = null
-var on_item: Item = null
-var on_trigger: Trigger = null
+var on_interactable: Array
+var on_item: Array
+var on_trigger: Array
 var held_item: Item = null
 var frozen: bool = false
 
@@ -60,9 +60,9 @@ func _process(delta):
 
 	# Picking up / setting down items
 	if Input.is_action_just_pressed("pick up"):
-		if held_item == null and on_item:
+		if held_item == null and on_item.size() > 0:
 			# Pick up item
-			held_item = on_item
+			held_item = on_item.pop_front()
 			held_item.position = Vector2(0, -20)
 			held_item.picked_up()
 			held_item.get_parent().remove_child(held_item)
@@ -70,7 +70,6 @@ func _process(delta):
 			var item_shadow = held_item.get_node("sprite_manager/shadow")
 			item_shadow.hide()
 			$shadow.scale = item_shadow.scale
-			on_item = null
 		elif held_item:
 			# Set down item
 			held_item.position = pickup_area.get_node("collider").global_position
@@ -81,8 +80,8 @@ func _process(delta):
 			$shadow.scale = shadow_scale
 			held_item = null
 	
-	if on_interactable and Input.is_action_just_pressed("interact"):
-		on_interactable.interacted_with(held_item)
+	if Input.is_action_just_pressed("interact"):
+		on_interactable.front().interacted_with(held_item)
 	
 	if held_item:
 		match (anim.current_animation):
@@ -109,30 +108,33 @@ func _physics_process(delta):
 func _on_intersect_area(area: Area2D) -> void:
 	if area.has_method("get_type"):
 		if area != held_item:
-			if area.is_type("Interactable"):
-				on_interactable = area
-				var color = Color.white
-				if not on_interactable.can_interact(held_item):
+			var color = Color.white
+			if area.is_type("Interactable") and not (area in on_interactable):
+				if on_interactable.size() > 0:
+					color = Color(0.5, 0.5, 0.5)
+				on_interactable.append(area)
+				if not area.can_interact(held_item):
 					color = Color.red
 				area.get_node("sprite_manager").outline = color
-			if area.is_type("Item"):
-				on_item = area
-				area.get_node("sprite_manager").outline = Color.white
-			if area.is_type("Trigger"):
-				on_trigger = area
+			if area.is_type("Item") and not (area in on_item):
+				if on_item.size() > 0:
+					color = Color(0.5, 0.5, 0.5)
+				on_item.append(area)
+				area.get_node("sprite_manager").outline = color
+			if area.is_type("Trigger") and not (area in on_trigger):
+				on_trigger.append(area)
 				area.trigger(self)
 
 func _off_intersect_area(area: Area2D) -> void:
 	if area.has_method("get_type"):
 		if area != held_item:
-			if area.is_type("Interactable") and area == on_interactable:
+			if area.is_type("Interactable") and area in on_interactable:
 				area.get_node("sprite_manager").outline = Color.transparent
-				on_interactable = null
-				print_debug("exit ", area.name)
-			if area.is_type("Item") and area == on_item:
+				on_interactable.erase(area)
+			if area.is_type("Item") and area in on_item:
 				area.get_node("sprite_manager").outline = Color.transparent
-				on_item = null
-			if area.is_type("Trigger") and area == on_trigger:
-				on_trigger = null
+				on_item.erase(area)
+			if area.is_type("Trigger") and area in on_trigger:
+				on_trigger.erase(area)
 				area.untrigger(self)
 
