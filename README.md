@@ -3,21 +3,43 @@
 
 2D top-down puzzle game with recursion, non-euclidean levels, and other head-fuckery
 
-## Todo (in order of priority?)
+## Controls
+- <kbd>W A S D</kbd> or arrow keys - move
+- <kbd>Q</kbd> - pick up item, like a key or a bag, or set down item if one is being held, or swap with item
+- <kbd>E</kbd> - interact with something like going into a bag
+- <kbd>R</kbd> - restart level
+
+## Todo
+
+### Fix
+- [ ] Resolve issue when on multiple interactable hitboxes (don't cancel if an action can be taken)
+- [ ] Diagonal movement faster than lateral
+- [ ] Make it so you can walk through door
+- [ ] Indicators for when you cant interact with held item
+
+### Priority
 - [x] Recursive level
 - [ ] Harder recursive level
 - [ ] Tall walls
 - [ ] Zooming animation for going into bags
-- [ ] 
----
+
+### Next
 - [ ] Animation for climbing up / down ladders
 - [ ] More tiles, better level visuals
-- [ ] New golem character art
+- [x] New golem character art
+- [ ] Tutorial tell u controls
+  - Show that you can't bring items up the rope
+  - Show how to 
 - [ ] Sound effects
 - [ ] Music
 - [ ] Menu screen
 - [ ] Intro area
 - [ ] Save progress
+
+### Release
+- [ ] See [here](https://www.reddit.com/r/godot/comments/8b67lb/guide_how_to_compress_wasmpck_file_to_make_html5/) for compressing build
+- [ ] Add splash load screen
+- [ ] Add icon
 
 ## Ideas
 - recursive level where door is in first and key is in bag in lower, u have to bring bag with key into room with bag that goes back to start

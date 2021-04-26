@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var vel: Vector2
-var speed: float = 2
+var speed: float = 2.5
 var on_interactable: Interactable = null
 var on_trigger: Trigger = null
 var held_item: Item = null
@@ -18,14 +18,27 @@ func _process(delta):
 	vel = Vector2(0, 0)
 	if Input.is_action_pressed("left"):
 		vel.x = -speed
-	if Input.is_action_pressed("right"):
+		anim.play("walk_left")
+	elif Input.is_action_pressed("right"):
 		vel.x = speed
+		anim.play("walk_right")
 	if Input.is_action_pressed("up"):
 		vel.y = -speed
-	if Input.is_action_pressed("down"):
+		anim.play("walk_up")
+	elif Input.is_action_pressed("down"):
 		vel.y = speed
+		anim.play("walk_down")
 	
-	anim.current_animation = "walk_down"
+	if vel.x != 0.0 and vel.y != 0.0:
+		vel = vel.normalized() * speed
+	
+	if vel.length() == 0.0:
+		match (anim.current_animation):
+			"walk_left": anim.play("walk_left")
+			"walk_right": anim.play("walk_right")
+			"walk_up": anim.play("walk_up")
+			"walk_down": anim.play("walk_down")
+	
 	anim.playback_speed = vel.length()
 	
 	if on_interactable == null:
