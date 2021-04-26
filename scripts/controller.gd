@@ -85,14 +85,15 @@ func goto_zone(zone_name: String, into: bool, move_to: Node2D):
 	get_tree().get_root().remove_child(current_zone)
 	current_zone = zones[zone_name]
 	get_tree().get_root().add_child(current_zone)
-	current_zone.add_child(player)
-	current_zone.add_child(main_camera)
 	
 	if into:
 		player.position = current_zone.get_node("player_spawn").position
 	else:
 		player.position = move_to.position
 	main_camera.position = player.position
+	
+	current_zone.add_child(player)
+	current_zone.add_child(main_camera)
 		
 	# Add exit
 	if into:

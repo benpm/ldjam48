@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://sprites/things.png" type="Texture" id=1]
 [ext_resource path="res://scripts/sprite_manager.gd" type="Script" id=2]
+[ext_resource path="res://sprites/shadow.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 length = 0.6
@@ -54,7 +55,7 @@ tracks/3/keys = {
 "values": [ Vector2( -1.5, -7.5 ), Vector2( -1.5, -7.5 ), Vector2( -1.5, -7.5 ), Vector2( -1.5, -7.5 ), Vector2( -1.5, -7.5 ), Vector2( -1.5, -7.5 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=2]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -81,7 +82,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 4 ) ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -108,7 +109,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 2 ) ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -189,7 +190,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -24.5 ) ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=7]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -216,7 +217,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=8]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -243,7 +244,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -26 ), Vector2( -9.5, -30 ) ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=9]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -270,7 +271,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0 ) ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=10]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -294,10 +295,10 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -1.5, -2 ) ]
+"values": [ Vector2( 1.5, -9 ) ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=11]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -324,7 +325,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=12]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -352,7 +353,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=13]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -379,7 +380,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=14]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -406,7 +407,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=15]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -433,7 +434,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=16]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -460,7 +461,7 @@ tracks/1/keys = {
 "values": [ Vector2( -0.5, -14 ) ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=17]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -487,7 +488,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -12.5 ) ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=18]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -514,7 +515,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0.5 ) ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=19]
 length = 0.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -541,7 +542,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0.5, 0 ), Vector2( 0, 1.5 ) ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=20]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:region_rect")
@@ -571,6 +572,12 @@ tracks/1/keys = {
 [node name="sprite_manager" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.490196 )
+scale = Vector2( 0.621752, 0.503937 )
+z_index = -1
+texture = ExtResource( 3 )
+
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 region_enabled = true
@@ -579,22 +586,22 @@ region_rect = Rect2( 129, 166, 34, 34 )
 [node name="animator" type="AnimationPlayer" parent="."]
 playback_speed = 0.0
 anims/bag = SubResource( 1 )
-anims/button_down = SubResource( 19 )
-anims/button_up = SubResource( 20 )
-anims/door = SubResource( 21 )
+anims/button_down = SubResource( 2 )
+anims/button_up = SubResource( 3 )
+anims/door = SubResource( 4 )
 anims/door_locked = SubResource( 5 )
 anims/door_unlocked = SubResource( 6 )
-anims/ex = SubResource( 22 )
-anims/gate_NS = SubResource( 32 )
-anims/hole = SubResource( 23 )
-anims/key = SubResource( 24 )
-anims/press_plate = SubResource( 25 )
-anims/press_plate_1 = SubResource( 26 )
-anims/press_plate_2 = SubResource( 27 )
-anims/press_plate_3 = SubResource( 28 )
-anims/press_plate_4 = SubResource( 29 )
-anims/rope = SubResource( 30 )
-anims/sign = SubResource( 33 )
-anims/toggle_plate_off = SubResource( 31 )
-anims/toggle_plate_on = SubResource( 17 )
-anims/treadmill = SubResource( 18 )
+anims/ex = SubResource( 7 )
+anims/gate_NS = SubResource( 8 )
+anims/hole = SubResource( 9 )
+anims/key = SubResource( 10 )
+anims/press_plate = SubResource( 11 )
+anims/press_plate_1 = SubResource( 12 )
+anims/press_plate_2 = SubResource( 13 )
+anims/press_plate_3 = SubResource( 14 )
+anims/press_plate_4 = SubResource( 15 )
+anims/rope = SubResource( 16 )
+anims/sign = SubResource( 17 )
+anims/toggle_plate_off = SubResource( 18 )
+anims/toggle_plate_on = SubResource( 19 )
+anims/treadmill = SubResource( 20 )

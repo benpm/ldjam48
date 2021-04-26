@@ -13,9 +13,11 @@
 
 ### Fix
 - [ ] Resolve issue when on multiple interactable hitboxes (don't cancel if an action can be taken)
-- [ ] Diagonal movement faster than lateral
+  - Items push each other around to avoid piling?
+- [x] Diagonal movement faster than lateral
 - [ ] Make it so you can walk through door
 - [ ] Indicators for when you cant interact with held item
+- [ ] Fix enter bag during transition time
 
 ### Priority
 - [x] Recursive level
@@ -25,12 +27,16 @@
 
 ### Next
 - [ ] Animation for climbing up / down ladders
+- [ ] Make items pushable / collision
+- [ ] Use tween node somehow
+- [ ] Set item down in front of you
 - [ ] More tiles, better level visuals
 - [x] New golem character art
 - [ ] Tutorial tell u controls
   - Show that you can't bring items up the rope
   - Show how to 
 - [ ] Sound effects
+- [ ] Shadow beneath items and player
 - [ ] Music
 - [ ] Menu screen
 - [ ] Intro area

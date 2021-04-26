@@ -6,6 +6,8 @@ export (String) var animation = "ex" setget set_animation
 
 func _ready():
 	$animator.play(animation, -1, 0.0)
+	$animator.advance(0.0)
+	$shadow.scale = Vector2(0.5, 0.5) * ($sprite.region_rect.size.x / $shadow.get_rect().size.y)
 
 func set_animation(v: String):
 	if $animator:
