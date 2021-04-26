@@ -84,6 +84,29 @@ func _process(delta):
 	if on_interactable.size() > 0 and Input.is_action_just_pressed("interact"):
 		on_interactable.front().interacted_with(held_item)
 	
+	
+	if held_item and on_interactable.size() > 0 and on_interactable.front().does_something:
+		if on_interactable.front().can_interact(held_item):
+			$hints.animation = "hint_interact"
+		else:
+			$hints.animation = "hint_nointeract"
+		if not $hints.visible: $hints.show()
+	elif on_item.size() > 0 and on_item.front() == on_interactable.front() and on_interactable.front().does_something:
+		if held_item:
+			if on_interactable.front().can_interact(held_item):
+				$hints.animation = "hint_interact"
+		else:
+			$hints.animation = "hint_interact"
+		if not $hints.visible: $hints.show()
+	elif not held_item and on_item.size() > 0:
+		$hints.animation = "hint_pickup"
+		if not $hints.visible: $hints.show()
+	elif not held_item and on_interactable.size() > 0:
+		$hints.animation = "hint_interact"
+		if not $hints.visible: $hints.show()
+	elif $hints.visible:
+		$hints.hide()
+	
 	if held_item:
 		match (anim.current_animation):
 			"walk_left", "idle_left": anim.play("walk_hold_left")

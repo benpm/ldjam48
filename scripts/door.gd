@@ -4,6 +4,9 @@ export(bool) var locked = true
 
 export(String) var to_level
 
+func _enter_tree():
+	self.does_something = true
+
 func _ready():
 	assert(ResourceLoader.exists("res://levels/%s/start.tscn" % to_level))
 	if locked:

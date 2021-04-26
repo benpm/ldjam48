@@ -7,6 +7,7 @@ func    get_type(): return "Interactable"
 onready var controller = $"/root/Controller"
 
 var can_interact_holding := true
+var does_something := false
 
 func interacted_with(item):
 	print_debug("%s Interactable: interacted with" % name)

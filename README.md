@@ -29,14 +29,16 @@
     - Only one solution: have to bring bags through in the exact right order
   - [ ] Box / hole intro level
   - [x] Harder button-order level
-- [ ] Zooming animation for going into bags
+- [ ] Transition animation for going into doors 
+- [ ] Bag opening animation
+- [x] Zooming animation for going into bags
   - Use Tween nodes?
   - Need different animation for going up ladder, into box / hole, through door
   - Add target zone scene as child of bag, bag open animation, player shrink into bag, zoom in, fade out parent scene, play climb-down ladder anim, make zone new root scene
 
 ### Next
 - [ ] Animation for climbing up / down ladders
-- [ ] Use tween node somehow
+- [x] Use tween node somehow
 - [x] Set item down in front of you
 - [ ] More tiles, better level visuals
 - [x] New golem character art

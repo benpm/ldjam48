@@ -2,6 +2,9 @@ extends Item
 
 export(String) var to_zone
 
+func _enter_tree():
+	self.does_something = true
+
 func _ready():
 	$sprite_manager.set_frame($"/root/Controller".sack_count)
 	$"/root/Controller".sack_count += 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://sprites/things.png" type="Texture" id=1]
 [ext_resource path="res://scripts/sprite_manager.gd" type="Script" id=2]
@@ -40,7 +40,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Rect2( 140, 331, 29, 27 ), Rect2( 0, 342, 29, 27 ), Rect2( 90, 334, 29, 27 ), Rect2( 60, 334, 29, 27 ), Rect2( 30, 327, 29, 27 ), Rect2( 0, 314, 29, 27 ) ]
+"values": [ Rect2( 140, 331, 29, 27 ), Rect2( 60, 334, 29, 27 ), Rect2( 90, 334, 29, 27 ), Rect2( 0, 342, 29, 27 ), Rect2( 0, 314, 29, 27 ), Rect2( 30, 327, 29, 27 ) ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("sprite:offset")
@@ -202,7 +202,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 0, 279, 34, 34 ) ]
+"values": [ Rect2( 117, 264, 34, 34 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -271,6 +271,141 @@ tracks/1/keys = {
 "values": [ Vector2( 0, -28 ), Vector2( -5.5, -30 ) ]
 }
 
+[sub_resource type="Animation" id=30]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 152, 275, 31, 24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 2 ) ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 120, 334, 18, 19 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=31]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 138, 85, 18, 19 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=28]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 30, 355, 18, 19 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=29]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Rect2( 152, 359, 18, 19 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:offset")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1.5 ) ]
+}
+
 [sub_resource type="Animation" id=9]
 length = 0.1
 tracks/0/type = "value"
@@ -283,7 +418,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Rect2( 152, 275, 31, 16 ) ]
+"values": [ Rect2( 120, 359, 31, 16 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -337,7 +472,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 39, 111, 38, 36 ), Rect2( 78, 229, 38, 34 ) ]
+"values": [ Rect2( 117, 156, 38, 36 ), Rect2( 117, 229, 38, 34 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -365,7 +500,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 117, 156, 38, 36 ), Rect2( 78, 264, 38, 34 ) ]
+"values": [ Rect2( 39, 148, 38, 36 ), Rect2( 0, 244, 38, 34 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -392,7 +527,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 0, 98, 38, 36 ), Rect2( 39, 257, 38, 34 ) ]
+"values": [ Rect2( 117, 119, 38, 36 ), Rect2( 39, 257, 38, 34 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -419,7 +554,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 0, 135, 38, 36 ), Rect2( 117, 229, 38, 34 ) ]
+"values": [ Rect2( 78, 156, 38, 36 ), Rect2( 78, 264, 38, 34 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -446,7 +581,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 78, 119, 38, 36 ), Rect2( 0, 244, 38, 34 ) ]
+"values": [ Rect2( 0, 135, 38, 36 ), Rect2( 78, 229, 38, 34 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -527,7 +662,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 39, 148, 38, 36 ), Rect2( 39, 185, 38, 35 ) ]
+"values": [ Rect2( 78, 119, 38, 36 ), Rect2( 39, 221, 38, 35 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -554,7 +689,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 0, 49, 61, 48 ), Rect2( 117, 193, 38, 35 ) ]
+"values": [ Rect2( 62, 0, 61, 48 ), Rect2( 0, 208, 38, 35 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -581,7 +716,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 78, 156, 38, 36 ), Rect2( 0, 208, 38, 35 ) ]
+"values": [ Rect2( 0, 98, 38, 36 ), Rect2( 117, 193, 38, 35 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -608,7 +743,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 62, 0, 61, 48 ), Rect2( 39, 221, 38, 35 ) ]
+"values": [ Rect2( 0, 0, 61, 48 ), Rect2( 0, 172, 38, 35 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -635,7 +770,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 117, 119, 38, 36 ), Rect2( 78, 193, 38, 35 ) ]
+"values": [ Rect2( 39, 111, 38, 36 ), Rect2( 78, 193, 38, 35 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -662,7 +797,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Rect2( 0, 0, 61, 48 ), Rect2( 0, 172, 38, 35 ) ]
+"values": [ Rect2( 0, 49, 61, 48 ), Rect2( 39, 185, 38, 35 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -690,7 +825,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Rect2( 35, 292, 34, 34 ), Rect2( 70, 299, 34, 34 ), Rect2( 105, 299, 34, 34 ), Rect2( 117, 264, 34, 34 ) ]
+"values": [ Rect2( 0, 279, 34, 34 ), Rect2( 35, 292, 34, 34 ), Rect2( 70, 299, 34, 34 ), Rect2( 105, 299, 34, 34 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("sprite:offset")
@@ -716,8 +851,9 @@ texture = ExtResource( 3 )
 
 [node name="sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+offset = Vector2( 0, 1.5 )
 region_enabled = true
-region_rect = Rect2( 0, 279, 34, 34 )
+region_rect = Rect2( 138, 85, 18, 19 )
 
 [node name="animator" type="AnimationPlayer" parent="."]
 playback_speed = 0.0
@@ -730,6 +866,11 @@ anims/door_unlocked = SubResource( 6 )
 anims/ex = SubResource( 7 )
 anims/gate_NS = SubResource( 8 )
 anims/gate_WE = SubResource( 25 )
+anims/hint_both = SubResource( 30 )
+anims/hint_interact = SubResource( 27 )
+anims/hint_nointeract = SubResource( 31 )
+anims/hint_pickup = SubResource( 28 )
+anims/hint_restart = SubResource( 29 )
 anims/hole = SubResource( 9 )
 anims/key = SubResource( 10 )
 anims/press_plate = SubResource( 11 )

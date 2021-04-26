@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://sprites/player.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
 [ext_resource path="res://sprites/shadow.png" type="Texture" id=3]
 [ext_resource path="res://sprites/mask.png" type="Texture" id=4]
+[ext_resource path="res://objects/sprite_manager.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.19741, 3.39975 )
@@ -381,5 +382,19 @@ texture_scale = 2.0
 mode = 3
 range_item_cull_mask = 2
 
+[node name="hints" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( 0, -43.2153 )
+animation = "hint_pickup"
+
+[node name="shadow" parent="hints" index="0"]
+visible = false
+scale = Vector2( 0.28125, 0.28125 )
+
+[node name="sprite" parent="hints" index="1"]
+region_rect = Rect2( 30, 355, 18, 19 )
+
 [connection signal="area_entered" from="pickup_area" to="." method="_on_intersect_area"]
 [connection signal="area_exited" from="pickup_area" to="." method="_off_intersect_area"]
+
+[editable path="hints"]
