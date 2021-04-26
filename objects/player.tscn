@@ -5,7 +5,7 @@
 [ext_resource path="res://sprites/shadow.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 7.43573, 6.70866 )
+extents = Vector2( 5.19741, 3.39975 )
 
 [sub_resource type="Animation" id=2]
 length = 0.1

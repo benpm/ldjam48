@@ -2,7 +2,8 @@
 
 [ext_resource path="res://objects/door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/zone.gd" type="Script" id=2]
-[ext_resource path="res://tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://tileset_floor.tres" type="TileSet" id=3]
+
 
 [node name="scene" type="YSort"]
 script = ExtResource( 2 )

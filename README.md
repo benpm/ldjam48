@@ -15,29 +15,37 @@
 - [x] Resolve issue when on multiple interactable hitboxes (don't cancel if an action can be taken)
   - Items push each other around to avoid piling?
 - [x] Diagonal movement faster than lateral
-- [ ] Make it so you can walk through door
-- [ ] Indicators for when you cant interact with held item
-- [ ] Fix enter bag during transition time
+- [x] Indicators for when you cant interact with held item
+- [x] Fix enter bag during transition time
 
 ### Priority
 - [x] Recursive level
-- [ ] Harder recursive level
-- [ ] Tall walls
+- [x] Tall walls
+- [ ] Show object behind tall walls
+- [ ] More levels
+  - [ ] Harder recursive level
+    - Only one solution: have to bring bags through in the exact right order
+  - [ ] Box / hole intro level
+  - [ ] Harder button-order level
 - [ ] Zooming animation for going into bags
+  - Use Tween nodes?
+  - Need different animation for going up ladder, into box / hole, through door
 
 ### Next
 - [ ] Animation for climbing up / down ladders
-- [ ] Make items pushable / collision
 - [ ] Use tween node somehow
-- [ ] Set item down in front of you
+- [x] Set item down in front of you
 - [ ] More tiles, better level visuals
 - [x] New golem character art
 - [ ] Tutorial tell u controls
   - Show that you can't bring items up the rope
   - Show how to 
 - [ ] Sound effects
-- [ ] Shadow beneath items and player
+- [x] Shadow beneath items and player
+- [ ] Door on a box
+- [ ] Box pushing to make path level
 - [ ] Music
+- [ ] Make items pushable / collision
 - [ ] Menu screen
 - [ ] Intro area
 - [ ] Save progress
