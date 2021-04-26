@@ -17,6 +17,7 @@
 - [x] Diagonal movement faster than lateral
 - [x] Indicators for when you cant interact with held item
 - [x] Fix enter bag during transition time
+- [ ] Multiple items together walking through makes outline stay
 
 ### Priority
 - [x] Recursive level
