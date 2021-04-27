@@ -23,6 +23,15 @@ func _ready():
 func _process(delta):
 	if frozen:
 		vel = Vector2(0, 0)
+		for p in on_interactable:
+			p.get_node("sprite_manager").outline = Color.transparent
+		on_interactable.clear()
+		for p in on_item:
+			p.get_node("sprite_manager").outline = Color.transparent
+		on_item.clear()
+		for p in on_trigger:
+			p.get_node("sprite_manager").outline = Color.transparent
+		on_trigger.clear()
 		return
 	
 	vel = Vector2(0, 0)
@@ -133,7 +142,7 @@ func _physics_process(delta):
 	vel = move_and_slide(vel * 60) / 60
 
 func _on_intersect_area(area: Area2D) -> void:
-	if area.has_method("get_type"):
+	if not frozen and area.has_method("get_type"):
 		if area != held_item:
 			var color = Color.white
 			if area.is_type("Interactable") and not (area in on_interactable):
@@ -154,7 +163,7 @@ func _on_intersect_area(area: Area2D) -> void:
 				Controller.play_sound("switch1")
 
 func _off_intersect_area(area: Area2D) -> void:
-	if area.has_method("get_type"):
+	if not frozen and area.has_method("get_type"):
 		if area != held_item:
 			if area.is_type("Interactable") and area in on_interactable:
 				area.get_node("sprite_manager").outline = Color.transparent

@@ -11,6 +11,8 @@
 
 ## Todo
 
+jam over so do is done
+
 ### Fix
 - [x] Resolve issue when on multiple interactable hitboxes (don't cancel if an action can be taken)
   - Items push each other around to avoid piling?
@@ -19,6 +21,7 @@
 - [x] Fix enter bag during transition time
 - [x] Multiple items together walking through makes outline stay
 - [ ] Mask out of front-facing walls
+- [x] Exit node not being set
 
 ### Priority
 - [x] Recursive level

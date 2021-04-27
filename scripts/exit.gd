@@ -12,6 +12,7 @@ func _ready():
 func interacted_with(item: Item):
 	.interacted_with(item)
 	if item == null:
+		assert(exit_node)
 		controller.goto_zone_animate(exit_to, exit_node, Controller.Trans.outof_container)
 
 func can_interact(item) -> bool:

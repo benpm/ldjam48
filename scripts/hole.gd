@@ -7,4 +7,4 @@ func _enter_tree():
 
 func interacted_with(item: Item):
 	.interacted_with(item)
-	controller.goto_zone_animate(to_zone, null, Controller.Trans.into_hole)
+	controller.goto_zone_animate(to_zone, self, Controller.Trans.into_hole)

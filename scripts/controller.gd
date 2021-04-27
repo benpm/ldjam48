@@ -125,6 +125,7 @@ func goto_zone_animate(zone_name: String, target: Node2D, trans: int):
 		var nextzone = load_zone(zone_name)
 		match (trans):
 			Trans.into_container: # Target is the container node
+				assert(target)
 				if zone_name == current_zone.zone_name:
 					tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.5,
 						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
@@ -147,19 +148,23 @@ func goto_zone_animate(zone_name: String, target: Node2D, trans: int):
 				tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.5,
 					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
 			Trans.outof_container: # Target is exit node
-				tween.interpolate_property(player, "scale", Vector2.ONE, Vector2(16.0, 16.0),
-					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				tween.interpolate_property(player, "position", null, target.position,
-					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				tween.interpolate_method(main_camera, "scale_mask", 1.0, 100.0,
-					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				tween.interpolate_property(main_camera, "zoom", Vector2.ONE, Vector2(16.0, 16.0),
-					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				main_camera.target = target
-				nextzone.scale = Vector2(16.0, 16.0)
-				nextzone.position = -target.position * nextzone.scale
-				current_zone.add_child(nextzone)
-				goto_trans = Trans.outof_container
+				assert(target)
+				if zone_name == current_zone.zone_name:
+					tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.5,
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+				else:
+					tween.interpolate_property(player, "scale", Vector2.ONE, Vector2(16.0, 16.0),
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+					tween.interpolate_property(player, "position", null, target.position,
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+					tween.interpolate_method(main_camera, "scale_mask", 1.0, 100.0,
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+					tween.interpolate_property(main_camera, "zoom", Vector2.ONE, Vector2(16.0, 16.0),
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+					main_camera.target = target
+					nextzone.scale = Vector2(16.0, 16.0)
+					nextzone.position = -target.position * nextzone.scale
+					current_zone.add_child(nextzone)
 		tween.start()
 		goto_timer.start(goto_duration)
 
@@ -203,7 +208,6 @@ func goto_zone(zone_name: String, target: Node2D, trans: int):
 		player.position = current_zone.get_node("player_spawn").position
 	else:
 		player.position = target.position
-	player.frozen = false
 	main_camera.target = player
 	main_camera.position = player.position
 	main_camera.zoom = Vector2.ONE
@@ -219,6 +223,7 @@ func goto_zone(zone_name: String, target: Node2D, trans: int):
 		var exit = current_zone.get_node("exit")
 		exit.exit_to = last_zone_name
 		exit.position = current_zone.get_node("player_spawn").position
+		assert(target)
 		exit.exit_node = target
 	
 	# Notify level controller
@@ -226,6 +231,8 @@ func goto_zone(zone_name: String, target: Node2D, trans: int):
 		level_controller.zone_change()
 	
 	print_debug("now inside ", zone_name)
+	
+	player.frozen = false
 
 func goto_level(name: String):
 	self.level_name = name
