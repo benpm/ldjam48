@@ -121,34 +121,39 @@ func goto_zone_animate(zone_name: String, target: Node2D, trans: int):
 		player.get_node("wall_mask").enabled = false
 		main_camera.transition_mask.show()
 		main_camera.transition_mask.scale = Vector2(5.0, 5.0)
+		print_debug(zone_name, target, trans)
 		var nextzone = load_zone(zone_name)
 		match (trans):
 			Trans.into_container: # Target is the container node
-				player.z_index = 10
-				tween.interpolate_property(player, "scale", null, Vector2(1.0/16.0, 1.0/16.0),
-					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				tween.interpolate_property(player, "position", null, target.position,
-					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.1,
-					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				tween.interpolate_property(main_camera, "zoom", null, Vector2(1.0/16.0, 1.0/16.0),
-					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				main_camera.target = target
-				nextzone.scale = Vector2(1.0/16.0, 1.0/16.0)
-				nextzone.z_index = 10
-				nextzone.position = -nextzone.get_node("player_spawn").position * nextzone.scale
-				target.add_child(nextzone)
+				if zone_name == current_zone.zone_name:
+					tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.5,
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+				else:
+					player.z_index = 10
+					tween.interpolate_property(player, "scale", Vector2.ONE, Vector2(1.0/16.0, 1.0/16.0),
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+					tween.interpolate_property(player, "position", null, target.position,
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+					tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.1,
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+					tween.interpolate_property(main_camera, "zoom", Vector2.ONE, Vector2(1.0/16.0, 1.0/16.0),
+						goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
+					main_camera.target = target
+					nextzone.scale = Vector2(1.0/16.0, 1.0/16.0)
+					nextzone.z_index = 10
+					nextzone.position = -nextzone.get_node("player_spawn").position * nextzone.scale
+					target.add_child(nextzone)
 			Trans.into_hole: # Target is null - use player spawn
 				tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.5,
 					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
 			Trans.outof_container: # Target is exit node
-				tween.interpolate_property(player, "scale", null, Vector2(16.0, 16.0),
+				tween.interpolate_property(player, "scale", Vector2.ONE, Vector2(16.0, 16.0),
 					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
 				tween.interpolate_property(player, "position", null, target.position,
 					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
 				tween.interpolate_method(main_camera, "scale_mask", 1.0, 100.0,
 					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
-				tween.interpolate_property(main_camera, "zoom", null, Vector2(16.0, 16.0),
+				tween.interpolate_property(main_camera, "zoom", Vector2.ONE, Vector2(16.0, 16.0),
 					goto_duration, tween.TRANS_QUAD, tween.EASE_IN_OUT)
 				main_camera.target = target
 				nextzone.scale = Vector2(16.0, 16.0)
@@ -177,13 +182,15 @@ func goto_zone(zone_name: String, target: Node2D, trans: int):
 	var next_zone = zones[zone_name]
 	if next_zone.get_parent():
 		next_zone.get_parent().remove_child(next_zone)
-		next_zone.scale = Vector2.ONE
-		next_zone.position = Vector2.ZERO
-		next_zone.z_index = 0
+	next_zone.scale = Vector2.ONE
+	next_zone.position = Vector2.ZERO
+	next_zone.z_index = 0
 	
 	player.get_node("wall_mask").enabled = true
-	tween.reset_all()
-	tween.stop_all()
+	tween.remove_all()
+	player.scale = Vector2.ONE
+	main_camera.zoom = Vector2.ONE
+	main_camera.scale_mask(1.0)
 	
 	# Make goto zone the current one
 	current_zone.remove_child(player)
