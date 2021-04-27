@@ -58,6 +58,8 @@ func _process(delta):
 	if vel.x != 0.0 and vel.y != 0.0:
 		vel = vel.normalized() * speed
 	
+	Controller.walkaudio.stream_paused = not vel.length() > 0.0
+	
 	# if vel.length() == 0.0:
 	# 	match (anim.current_animation):
 	# 		"walk_hold_left", "walk_left": anim.play("idle_left")
@@ -83,6 +85,7 @@ func _process(delta):
 			item_shadow.hide()
 			$shadow.scale = item_shadow.scale
 			on_interactable.erase(held_item)
+			Controller.play_sound("pickup")
 		elif held_item:
 			# Set down item
 			held_item.position = pickup_area.get_node("collider").global_position
@@ -92,6 +95,7 @@ func _process(delta):
 			held_item.get_node("sprite_manager/shadow").show()
 			$shadow.scale = shadow_scale
 			held_item = null
+			Controller.play_sound("putdown")
 	
 	if on_interactable.size() > 0 and Input.is_action_just_pressed("interact"):
 		on_interactable.front().interacted_with(held_item)
@@ -147,6 +151,7 @@ func _on_intersect_area(area: Area2D) -> void:
 			if area.is_type("Trigger") and not (area in on_trigger):
 				on_trigger.append(area)
 				area.trigger(self)
+				Controller.play_sound("switch1")
 
 func _off_intersect_area(area: Area2D) -> void:
 	if area.has_method("get_type"):
@@ -160,4 +165,5 @@ func _off_intersect_area(area: Area2D) -> void:
 			if area.is_type("Trigger") and area in on_trigger:
 				on_trigger.erase(area)
 				area.untrigger(self)
+				Controller.play_sound("switch2")
 

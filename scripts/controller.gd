@@ -27,14 +27,54 @@ onready var tween := Tween.new()
 
 onready var goto_timer := Timer.new()
 
+onready var audio := AudioStreamPlayer.new()
+onready var walkaudio := AudioStreamPlayer.new()
+onready var music := AudioStreamPlayer.new()
+
+var sounds: Dictionary
+
 # Called on game start
 func _ready() -> void:
 	tween.repeat = false
 	goto_timer.one_shot = true
+	audio.autoplay = false
+	audio.volume_db = -12.0
+	sounds["boop"] = load("res://audio/boop.wav")
+	sounds["switch1"] = load("res://audio/switch1.wav")
+	sounds["switch2"] = load("res://audio/switch2.wav")
+	sounds["unlock"] = load("res://audio/unlock.wav")
+
+	sounds["walk"] = load("res://audio/walk.ogg")
+	sounds["walk"].loop = true
+	sounds["pickup"] = load("res://audio/pickup.ogg")
+	sounds["pickup"].loop = false
+	sounds["doorOpen_1"] = load("res://audio/doorOpen_1.ogg")
+	sounds["doorOpen_1"].loop = false
+	sounds["putdown"] = load("res://audio/putdown.ogg")
+	sounds["putdown"].loop = false
 	add_child(tween)
 	add_child(goto_timer)
+	add_child(audio)
+	add_child(walkaudio)
+	walkaudio.autoplay = false
+	walkaudio.stream = sounds["walk"]
+	walkaudio.stream.loop = true
+
+	walkaudio.play()
+	
+	music.stream = load("res://audio/music.mp3")
+	music.stream.loop = true
+	music.play()
+	music.volume_db = - 7.0
+	add_child(music)
+
 	# start_level called by Zone on tree enter
 	goto_timer.connect("timeout", self, "_goto_zone_sig")
+
+func play_sound(name: String):
+	audio.stop()
+	audio.stream = sounds[name]
+	audio.play()
 
 func _goto_zone_sig():
 	goto_zone(goto_zonename, goto_target, goto_trans)

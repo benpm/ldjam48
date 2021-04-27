@@ -25,3 +25,4 @@ func set_toggle_state(value: bool):
 func untrigger(who: Node2D, data = null):
 	set_toggle_state(not toggle_state)
 	$sprite_manager.set_frame(0)
+

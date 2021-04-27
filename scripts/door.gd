@@ -20,6 +20,7 @@ func interacted_with(item):
 		if locked:
 			locked = false
 			$sprite_manager/animator.play("door_unlocked")
+			Controller.play_sound("unlock")
 			item.get_parent().used_held_item()
 		else:
 			controller.goto_level(to_level)
