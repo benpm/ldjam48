@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tileset_walls.tres" type="TileSet" id=1]
 [ext_resource path="res://scripts/zone.gd" type="Script" id=2]
 [ext_resource path="res://tileset_floor.tres" type="TileSet" id=3]
 [ext_resource path="res://objects/sack.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/ninepatch.png" type="Texture" id=5]
+[ext_resource path="res://font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scripts/floaty.gd" type="Script" id=7]
 
 [node name="scene" type="TileMap"]
 light_mask = 2
@@ -33,3 +36,77 @@ to_zone = "B"
 
 [node name="player_spawn" type="Node2D" parent="."]
 position = Vector2( 160, 128 )
+
+[node name="text" type="Node2D" parent="."]
+z_index = 2
+script = ExtResource( 7 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="text"]
+show_behind_parent = true
+margin_left = -40.0
+margin_top = -40.0
+margin_right = 223.0
+margin_bottom = 18.0
+texture = ExtResource( 5 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="text/NinePatchRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.5
+margin_top = 4.0
+margin_right = 120.5
+margin_bottom = 9.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 16, 16 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 6 )
+custom_colors/default_color = Color( 0.152941, 0.254902, 0.176471, 1 )
+text = "Right, enough flapping about. The reason I brought you here is so that you can hopefully locate my -"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="text"]
+show_behind_parent = true
+margin_left = 120.0
+margin_top = 176.0
+margin_right = 383.0
+margin_bottom = 236.0
+texture = ExtResource( 5 )
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="text/NinePatchRect2"]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -126.0
+margin_top = 4.5
+margin_right = 126.0
+margin_bottom = 9.5
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 16, 16 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 6 )
+custom_colors/default_color = Color( 0.152941, 0.254902, 0.176471, 1 )
+text = "Hang on, someone's at the door. You just give this room a go and I'll get back to you in no time!"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

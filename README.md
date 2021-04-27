@@ -42,7 +42,7 @@
 - [x] Set item down in front of you
 - [ ] More tiles, better level visuals
 - [x] New golem character art
-- [ ] Tutorial tell u controls
+- [x] Tutorial tell u controls
   - Show that you can't bring items up the rope
   - Show how to 
 - [ ] Sound effects
