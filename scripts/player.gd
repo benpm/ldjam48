@@ -16,7 +16,7 @@ onready var pickup_area: Area2D = $pickup_area
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	anim.play("idle_down")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,30 +28,42 @@ func _process(delta):
 	vel = Vector2(0, 0)
 	if Input.is_action_pressed("left"):
 		vel.x = -speed
-		anim.play("walk_left")
+		if held_item:
+			anim.play("walk_hold_left")	
+		else:
+			anim.play("walk_left")
 		facing = Vector2(-1, 0)
 	elif Input.is_action_pressed("right"):
 		vel.x = speed
-		anim.play("walk_right")
+		if held_item:
+			anim.play("walk_hold_right")	
+		else:
+			anim.play("walk_right")
 		facing = Vector2(1, 0)
 	if Input.is_action_pressed("up"):
 		vel.y = -speed
-		anim.play("walk_up")
+		if held_item:
+			anim.play("walk_hold_up")	
+		else:
+			anim.play("walk_up")
 		facing = Vector2(0, -1)
 	elif Input.is_action_pressed("down"):
 		vel.y = speed
-		anim.play("walk_down")
+		if held_item:
+			anim.play("walk_hold_down")	
+		else:
+			anim.play("walk_down")
 		facing = Vector2(0, 1)
 	
 	if vel.x != 0.0 and vel.y != 0.0:
 		vel = vel.normalized() * speed
 	
-	if vel.length() == 0.0:
-		match (anim.current_animation):
-			"walk_left": anim.play("idle_left")
-			"walk_right": anim.play("idle_right")
-			"walk_up": anim.play("idle_up")
-			"walk_down": anim.play("idle_down")
+	# if vel.length() == 0.0:
+	# 	match (anim.current_animation):
+	# 		"walk_hold_left", "walk_left": anim.play("idle_left")
+	# 		"walk_hold_right", "walk_right": anim.play("idle_right")
+	# 		"walk_hold_up", "walk_up": anim.play("idle_up")
+	# 		"walk_hold_down", "walk_down": anim.play("idle_down")
 	
 	anim.playback_speed = vel.length()
 
@@ -106,19 +118,6 @@ func _process(delta):
 		if not $hints.visible: $hints.show()
 	elif $hints.visible:
 		$hints.hide()
-	
-	if held_item:
-		match (anim.current_animation):
-			"walk_left", "idle_left": anim.play("walk_hold_left")
-			"walk_right", "idle_right": anim.play("walk_hold_right")
-			"walk_up", "idle_up": anim.play("walk_hold_up")
-			"walk_down", "idle_down": anim.play("walk_hold_down")
-	else:
-		match (anim.current_animation):
-			"walk_hold_left": anim.play("walk_left")
-			"walk_hold_right": anim.play("walk_right")
-			"walk_hold_up": anim.play("walk_up")
-			"walk_hold_down": anim.play("walk_down")
 
 
 func used_held_item():
