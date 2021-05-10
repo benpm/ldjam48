@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/unlock.ogg-83dd48ec6c21ebcb30489e201855d957.oggstr"
+
+[deps]
+
+source_file="res://audio/unlock.ogg"
+dest_files=[ "res://.import/unlock.ogg-83dd48ec6c21ebcb30489e201855d957.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

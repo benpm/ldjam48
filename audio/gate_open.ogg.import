@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/gate_open.ogg-50c9760d37be364b9c6edf3e42f55d54.oggstr"
+
+[deps]
+
+source_file="res://audio/gate_open.ogg"
+dest_files=[ "res://.import/gate_open.ogg-50c9760d37be364b9c6edf3e42f55d54.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

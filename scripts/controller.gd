@@ -1,19 +1,25 @@
+# The game controller singleton
+
 extends Node2D
 
-const player_tscn = preload("res://objects/player.tscn")
-const main_camera_tscn = preload("res://objects/main_camera.tscn")
-const exit_tscn: PackedScene = preload("res://objects/exit.tscn")
+# Packed objects
+const _player: PackedScene = preload("res://objects/player.tscn")
+const _main_camera: PackedScene = preload("res://objects/main_camera.tscn")
+const _exit: PackedScene = preload("res://objects/exit.tscn")
 
-var zones: Dictionary
-var current_zone: Node2D
-var level_dir: String
-var level_controller: Node
-var level_name: String
+var zones: Dictionary		# Mapping from local zone names to zone scene nodes
+var current_zone: Node2D	# Currently entered zone, this should be active scene node
+var level_dir: String		# Resource path to the directory which is the current level
+var level_controller: Node	# The level controller node, if there is one
+var level_name: String		# The of the current level, also the name of the current level directory
 
-var player: Node2D
-var main_camera: Camera2D
+var player: Node2D			# The player node
+var main_camera: Camera2D	# The main camera node
 
-enum Trans { into_container, outof_container, into_hole }
+# Types of transitions
+enum Trans {
+	into_container, outof_container, into_hole
+}
 
 var goto_duration := 0.75
 var goto_campos: Vector2
@@ -21,12 +27,10 @@ var goto_zonename: String
 var goto_target: Node2D
 var goto_trans: int
 
-var sack_count := 0
+var sack_count := 0			# Global sack count for the purpose of auto coloring
 
 onready var tween := Tween.new()
-
 onready var goto_timer := Timer.new()
-
 onready var audio := AudioStreamPlayer.new()
 onready var walkaudio := AudioStreamPlayer.new()
 onready var music := AudioStreamPlayer.new()
@@ -39,19 +43,18 @@ func _ready() -> void:
 	goto_timer.one_shot = true
 	audio.autoplay = false
 	audio.volume_db = -12.0
-	sounds["boop"] = load("res://audio/boop.wav")
-	sounds["switch1"] = load("res://audio/switch1.wav")
-	sounds["switch2"] = load("res://audio/switch2.wav")
-	sounds["unlock"] = load("res://audio/unlock.wav")
-
-	sounds["walk"] = load("res://audio/walk.ogg")
-	sounds["walk"].loop = true
-	sounds["pickup"] = load("res://audio/pickup.ogg")
-	sounds["pickup"].loop = false
-	sounds["doorOpen_1"] = load("res://audio/doorOpen_1.ogg")
-	sounds["doorOpen_1"].loop = false
-	sounds["putdown"] = load("res://audio/putdown.ogg")
-	sounds["putdown"].loop = false
+	# Load all the audio
+	var audioDir = Directory.new()
+	audioDir.open("res://audio/")
+	audioDir.list_dir_begin(true, true)
+	var fname = audioDir.get_next()
+	while fname:
+		if fname.get_extension() == "ogg":
+			print_debug(fname)
+			sounds[fname.get_basename()] = load("res://audio/" + fname)
+			sounds[fname.get_basename()].loop = false
+		fname = audioDir.get_next()
+	
 	add_child(tween)
 	add_child(goto_timer)
 	add_child(audio)
@@ -94,12 +97,12 @@ func start_level():
 	print_debug("level dir = %s, level name = %s" % [level_dir, level_name])
 	
 	# Add player
-	player = player_tscn.instance()
+	player = _player.instance()
 	current_zone.add_child(player)
 	player.position = current_zone.get_node("player_spawn").position
 	
 	# Add main camera
-	main_camera = main_camera_tscn.instance()
+	main_camera = _main_camera.instance()
 	current_zone.add_child(main_camera)
 
 func ready_level():
@@ -219,7 +222,7 @@ func goto_zone(zone_name: String, target: Node2D, trans: int):
 	# Add exit
 	if trans == Trans.into_hole or trans == Trans.into_container:
 		if not current_zone.has_node("exit"):
-			current_zone.add_child(exit_tscn.instance())
+			current_zone.add_child(_exit.instance())
 		var exit = current_zone.get_node("exit")
 		exit.exit_to = last_zone_name
 		exit.position = current_zone.get_node("player_spawn").position

@@ -4,8 +4,6 @@ class_name Interactable
 func is_type(type): return type == "Interactable"
 func    get_type(): return "Interactable"
 
-onready var controller = $"/root/Controller"
-
 var can_interact_holding := true
 var does_something := false
 

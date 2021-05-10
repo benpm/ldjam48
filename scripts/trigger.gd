@@ -7,8 +7,6 @@ func    get_type(): return "Trigger"
 signal trigger_on(who, data)
 signal trigger_off(who, data)
 
-onready var controller = $"/root/Controller"
-
 var can_interact_holding := true
 
 func trigger(who: Node2D, data = null):

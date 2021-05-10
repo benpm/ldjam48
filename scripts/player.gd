@@ -94,7 +94,7 @@ func _process(delta):
 			item_shadow.hide()
 			$shadow.scale = item_shadow.scale
 			on_interactable.erase(held_item)
-			Controller.play_sound("pickup")
+			Controller.play_sound("grab")
 		elif held_item:
 			# Set down item
 			held_item.position = pickup_area.get_node("collider").global_position
@@ -160,7 +160,7 @@ func _on_intersect_area(area: Area2D) -> void:
 			if area.is_type("Trigger") and not (area in on_trigger):
 				on_trigger.append(area)
 				area.trigger(self)
-				Controller.play_sound("switch1")
+				Controller.play_sound("press_plate")
 
 func _off_intersect_area(area: Area2D) -> void:
 	if not frozen and area.has_method("get_type"):
@@ -174,5 +174,5 @@ func _off_intersect_area(area: Area2D) -> void:
 			if area.is_type("Trigger") and area in on_trigger:
 				on_trigger.erase(area)
 				area.untrigger(self)
-				Controller.play_sound("switch2")
+				Controller.play_sound("unpress_plate")
 

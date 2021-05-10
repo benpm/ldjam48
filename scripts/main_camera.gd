@@ -1,7 +1,6 @@
 extends Camera2D
 
 onready var player = $"../player"
-onready var controller = $"/root/Controller"
 
 onready var transition_mask: Sprite = $transition_mask
 

@@ -23,7 +23,7 @@ func interacted_with(item):
 			Controller.play_sound("unlock")
 			item.get_parent().used_held_item()
 		else:
-			controller.goto_level(to_level)
+			Controller.goto_level(to_level)
 
 func can_interact(item) -> bool:
 	return not locked or (item != null and item.name == "key")

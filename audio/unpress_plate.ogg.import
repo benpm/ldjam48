@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/unpress_plate.ogg-2c2cc214b967be910a1cbd564e6a95aa.oggstr"
+
+[deps]
+
+source_file="res://audio/unpress_plate.ogg"
+dest_files=[ "res://.import/unpress_plate.ogg-2c2cc214b967be910a1cbd564e6a95aa.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
