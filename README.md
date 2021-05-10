@@ -1,7 +1,7 @@
 # **I Stole a Wizard's Sack and All I Got Was This Lousy Infinite Pocket Universe** (working title)
-*Ludum Dare 48 Entry - Theme: "Deeper and Deeper"*
+*[Ludum Dare 48 Entry](https://ldjam.com/events/ludum-dare/48/i-stole-a-wizards-sack-and-all-i-got-was-this-lousy-infinite-pocket-universe) - Theme: "Deeper and Deeper"*
 
-2D top-down puzzle game with recursion, non-euclidean levels, and other head-fuckery
+2D top-down puzzle game with recursion, non-euclidean levels, and other head-fuckery. Made with Godot Engine
 
 ## Controls
 - <kbd>W A S D</kbd> or arrow keys - move
@@ -10,6 +10,7 @@
 - <kbd>R</kbd> - restart level
 
 ## Todo
+Stuff todo for post-jam version?
 
 jam over so do is done
 
