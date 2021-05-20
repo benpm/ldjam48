@@ -7,7 +7,7 @@ var on_interactable: Array
 var on_item: Array
 var on_trigger: Array
 var held_item: Item = null
-var frozen: bool = false
+var frozen: bool = false setget set_frozen
 
 onready var shadow_scale: Vector2 = $shadow.scale
 
@@ -67,7 +67,7 @@ func _process(delta):
 	if vel.x != 0.0 and vel.y != 0.0:
 		vel = vel.normalized() * speed
 	
-	Controller.walkaudio.stream_paused = not vel.length() > 0.0
+	Controller.sound_playing("walk", vel.length() > 0.0, position)
 	
 	# if vel.length() == 0.0:
 	# 	match (anim.current_animation):
@@ -94,7 +94,7 @@ func _process(delta):
 			item_shadow.hide()
 			$shadow.scale = item_shadow.scale
 			on_interactable.erase(held_item)
-			Controller.play_sound("grab")
+			Controller.play_sound("grab", position)
 		elif held_item:
 			# Set down item
 			held_item.position = pickup_area.get_node("collider").global_position
@@ -104,7 +104,7 @@ func _process(delta):
 			held_item.get_node("sprite_manager/shadow").show()
 			$shadow.scale = shadow_scale
 			held_item = null
-			Controller.play_sound("putdown")
+			Controller.play_sound("putdown", position)
 	
 	if on_interactable.size() > 0 and Input.is_action_just_pressed("interact"):
 		on_interactable.front().interacted_with(held_item)
@@ -132,6 +132,9 @@ func _process(delta):
 	elif $hints.visible:
 		$hints.hide()
 
+func set_frozen(val: bool):
+	frozen = val
+	$collider.disabled = frozen
 
 func used_held_item():
 	remove_child(held_item)
@@ -160,7 +163,7 @@ func _on_intersect_area(area: Area2D) -> void:
 			if area.is_type("Trigger") and not (area in on_trigger):
 				on_trigger.append(area)
 				area.trigger(self)
-				Controller.play_sound("press_plate")
+				Controller.play_sound("press_plate", position)
 
 func _off_intersect_area(area: Area2D) -> void:
 	if not frozen and area.has_method("get_type"):
@@ -174,5 +177,5 @@ func _off_intersect_area(area: Area2D) -> void:
 			if area.is_type("Trigger") and area in on_trigger:
 				on_trigger.erase(area)
 				area.untrigger(self)
-				Controller.play_sound("unpress_plate")
+				Controller.play_sound("unpress_plate", position)
 

@@ -4,9 +4,10 @@ class_name Zone
 
 var depth: int = 0
 var zone_name: String = "" setget set_zone_name, get_zone_name
+var clone: bool = false
 
 func _enter_tree():
-	if get_zone_name() == "start":
+	if not clone and get_zone_name() == "start":
 		$"/root/Controller".start_level()
 
 func _ready():

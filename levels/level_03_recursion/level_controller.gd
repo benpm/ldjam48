@@ -19,7 +19,7 @@ func zone_change():
 	update_display_tiles()
 
 func update_display_tiles():
-	var tilemap: TileMap = $"/root/scene".get_node("TileMap")
+	var tilemap: TileMap = Controller.current_zone.get_node("TileMap")
 	for i in range(3):
 		var value := 0
 		if i < pressed.size():
