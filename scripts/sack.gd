@@ -15,5 +15,5 @@ func picked_up():
 
 func interacted_with(item: Item):
 	.interacted_with(item)
-	Controller.goto_zone_animate(to_zone, self, Controller.Trans.into_container)
+	Controller.goto_zone_animate(to_zone, self, null, Controller.Trans.into_container)
 	Controller.play_sound("into_bag", position)

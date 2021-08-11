@@ -141,6 +141,10 @@ func used_held_item():
 	held_item = null
 	print_debug("used item")
 
+func on_enter_zone(new_zone):
+	if held_item:
+		Controller.set_owner_rec(held_item, new_zone)
+
 func _physics_process(delta):
 	vel = move_and_slide(vel * 60) / 60
 

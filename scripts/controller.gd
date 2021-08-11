@@ -25,7 +25,8 @@ enum Trans {
 var goto_duration := 0.5
 var goto_campos: Vector2
 var goto_zonename: String
-var goto_target: Node2D
+var goto_to_node: Node2D
+var goto_from_node: Node2D
 var goto_trans: int
 
 var sack_count := 0			# Global sack count for the purpose of auto coloring
@@ -89,7 +90,7 @@ func sound_playing(name: String, playing: bool, pos = null):
 
 # Called when transition to new zone is complete
 func _goto_zone_sig():
-	goto_zone(goto_zonename, goto_target, goto_trans)
+	goto_zone(goto_zonename, goto_from_node, goto_to_node, goto_trans)
 
 # Called when entering a new level
 func start_level():
@@ -122,10 +123,11 @@ func ready_level():
 		level_controller.get_parent().remove_child(level_controller)
 		self.add_child(level_controller)
 
-func goto_zone_animate(zone_name: String, target: Node2D, trans: int):
+func goto_zone_animate(zone_name: String, from_node: Node2D, to_node: Node2D, trans: int):
 	if not player.frozen:
 		goto_zonename = zone_name
-		goto_target = target
+		goto_to_node = to_node
+		goto_from_node = from_node
 		goto_trans = trans
 		player.frozen = true
 		player.get_node("wall_mask").enabled = false
@@ -135,27 +137,28 @@ func goto_zone_animate(zone_name: String, target: Node2D, trans: int):
 			zone_clone = clone_zone(zone_name)
 		match (trans):
 			Trans.into_container: # Target is the container node
-				assert(target)
+				assert(from_node)
 				player.z_index = 10
 				# Player scales down, camera zooms in
 				zone_tween.interpolate_property(player, "scale", Vector2.ONE, Vector2(1.0/16.0, 1.0/16.0),
 					goto_duration, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-				zone_tween.interpolate_property(player, "position", null, target.position,
+				zone_tween.interpolate_property(player, "position", null, from_node.position,
 					goto_duration, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 				zone_tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.1,
 					goto_duration, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 				zone_tween.interpolate_property(main_camera, "zoom", Vector2.ONE, Vector2(1.0/16.0, 1.0/16.0),
 					goto_duration, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
-				main_camera.target = target
+				main_camera.target = from_node
 				zone_clone.scale = Vector2(1.0/16.0, 1.0/16.0)
 				zone_clone.z_index = 10
 				zone_clone.position = -zone_clone.get_node("player_spawn").position * zone_clone.scale
-				target.add_child(zone_clone)
+				from_node.add_child(zone_clone)
 			Trans.into_hole: # Target is null - use player spawn
 				zone_tween.interpolate_method(main_camera, "scale_mask", 5.0, 0.5,
 					goto_duration, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 			Trans.outof_container: # Target is exit node
-				assert(target)
+				assert(from_node)
+				assert(to_node)
 				# Player scales up, camera zooms out
 				zone_tween.interpolate_property(player, "scale", Vector2.ONE, Vector2(16.0, 16.0),
 					goto_duration, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
@@ -164,9 +167,11 @@ func goto_zone_animate(zone_name: String, target: Node2D, trans: int):
 				zone_tween.interpolate_property(main_camera, "zoom", Vector2.ONE, Vector2(16.0, 16.0),
 					goto_duration, Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 				zone_clone.scale = Vector2(16.0, 16.0)
-				zone_clone.position = -target.position * zone_clone.scale + current_zone.get_node("exit").position
-				zone_clone.z_index = 10
-				current_zone.add_child(zone_clone)
+				zone_clone.position = -to_node.position * zone_clone.scale + from_node.position
+				zone_clone.z_index = -10
+				current_zone.z_index = 10
+				player.z_index = 20
+				from_node.add_child(zone_clone)
 		zone_tween.start()
 
 func load_zone(zone_name: String) -> Zone:
@@ -176,24 +181,27 @@ func load_zone(zone_name: String) -> Zone:
 		new_zone.depth = current_zone.depth + 1
 		new_zone.zone_name = zone_name
 		zones[zone_name] = new_zone
-	return zones[zone_name]
-
-func set_owner_rec(obj: Node, _owner: Node):
-	for child in obj.get_children():
-		child.owner = _owner
-		set_owner_rec(child, _owner)
-
-func clone_zone(zone_name: String) -> Zone:
-	var zone: Zone = load_zone(zone_name).duplicate()
+	var zone = zones[zone_name]
 	set_owner_rec(zone, zone)
-	zone.clone = true
+	return zone
+# Recursively set's owner of obj to _owner
+func set_owner_rec(obj: Node, _owner: Node):
+	obj.owner = _owner
+	for child in obj.get_children():
+		set_owner_rec(child, _owner)
+# Clone a zone by name
+func clone_zone(zone_name: String) -> Zone:
+	var orig_zone: Zone = load_zone(zone_name)
+	var zone = orig_zone.duplicate(DUPLICATE_USE_INSTANCING);
 	if zone.get_node("player"):
 		zone.remove_child(zone.get_node("player"))
 	if zone.get_node("main_camera"):
 		zone.remove_child(zone.get_node("main_camera"))
+	set_owner_rec(zone, zone)
+	zone.clone = true
 	return zone
 
-func goto_zone(zone_name: String, target: Node2D, trans: int):
+func goto_zone(zone_name: String, from_node: Node2D, to_node: Node2D, trans: int):
 	var last_zone_name = current_zone.zone_name
 
 	# Remove cloned zone
@@ -224,12 +232,13 @@ func goto_zone(zone_name: String, target: Node2D, trans: int):
 	if trans == Trans.into_hole or trans == Trans.into_container:
 		player.position = current_zone.get_node("player_spawn").position
 	else:
-		player.position = target.position
+		player.position = to_node.position
 	main_camera.target = player
 	main_camera.position = player.position
 	main_camera.zoom = Vector2.ONE
 	main_camera.transition_mask.hide()
 
+	# Add player and camera to newly entered zone, setting ownership so they remain attached
 	current_zone.add_child(player)
 	current_zone.add_child(main_camera)
 		
@@ -240,8 +249,11 @@ func goto_zone(zone_name: String, target: Node2D, trans: int):
 		var exit = current_zone.get_node("exit")
 		exit.exit_to = last_zone_name
 		exit.position = current_zone.get_node("player_spawn").position
-		assert(target)
-		exit.exit_node = target
+		assert(from_node)
+		exit.exit_node = from_node
+	
+	# Ensure correct ownership
+	set_owner_rec(current_zone, current_zone)
 	
 	# Notify level controller
 	if level_controller != null:
