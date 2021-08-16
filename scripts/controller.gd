@@ -192,13 +192,12 @@ func set_owner_rec(obj: Node, _owner: Node):
 # Clone a zone by name
 func clone_zone(zone_name: String) -> Zone:
 	var orig_zone: Zone = load_zone(zone_name)
-	var zone = orig_zone.duplicate(DUPLICATE_USE_INSTANCING);
+	var zone = orig_zone.duplicate(0);
 	if zone.get_node("player"):
 		zone.remove_child(zone.get_node("player"))
 	if zone.get_node("main_camera"):
 		zone.remove_child(zone.get_node("main_camera"))
 	set_owner_rec(zone, zone)
-	zone.clone = true
 	return zone
 
 func goto_zone(zone_name: String, from_node: Node2D, to_node: Node2D, trans: int):

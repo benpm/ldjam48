@@ -17,7 +17,7 @@ onready var pickup_area: Area2D = $pickup_area
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	anim.play("idle_down")
-
+	Controller.set_owner_rec(self, self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -89,6 +89,7 @@ func _process(delta):
 			held_item.position = Vector2(0, -20)
 			held_item.picked_up()
 			held_item.get_parent().remove_child(held_item)
+			Controller.set_owner_rec(held_item, self)
 			add_child(held_item)
 			var item_shadow = held_item.get_node("sprite_manager/shadow")
 			item_shadow.hide()
@@ -101,6 +102,7 @@ func _process(delta):
 			held_item.put_down()
 			remove_child(held_item)
 			get_parent().add_child(held_item)
+			Controller.set_owner_rec(held_item, get_parent())
 			held_item.get_node("sprite_manager/shadow").show()
 			$shadow.scale = shadow_scale
 			held_item = null
