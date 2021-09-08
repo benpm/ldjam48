@@ -124,7 +124,9 @@ func ready_level():
 	# Recurse and initialize zones
 	for child in current_zone.get_children():
 		if child.get("to_zone"):
-			load_zone(child.to_zone)
+			var zone: Zone = load_zone(child.to_zone)
+			add_child(zone)
+			remove_child(zone)
 # Called by external to goto a zone with a zooming animation
 func goto_zone_animate(zone_name: String, from_node: Node2D, to_node: Node2D, trans: int):
 	if not player.frozen:

@@ -11,7 +11,7 @@ func _ready():
 	zone_change()
 
 func zone_change():
-	var zone = $"/root/scene"
+	var zone = Controller.current_zone
 	if not gate_A: gate_A = zone.get_node("gate_A")
 	if not gate_B: gate_B = zone.get_node("gate_B")
 	if gate_A: gate_A.opened = gate_A_openstate

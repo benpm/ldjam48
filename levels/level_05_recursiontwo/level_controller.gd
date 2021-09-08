@@ -13,13 +13,13 @@ func _ready():
 	zone_change()
 
 func zone_change():
-	var zone = $"/root/scene"
+	var zone = Controller.current_zone
 	var press_plate: Trigger = zone.get_node("press_plate")
 	press_plate.connect("trigger_on", self, "press_number")
 	update_display_tiles()
 
 func update_display_tiles():
-	var tilemap: TileMap = $"/root/scene".get_node("TileMap")
+	var tilemap: TileMap = Controller.current_zone.get_node("TileMap")
 	for i in range(3):
 		var value := 0
 		if i < pressed.size():
@@ -37,7 +37,7 @@ func press_number(who: Node2D, data: Dictionary):
 	print_debug("level controller pressed: ", pressed)
 	if pressed.size() == 3:
 		if pressed[0] == 1 and pressed[1] == 2 and pressed[2] == 3:
-			$"/root/scene".add_child(door)
+			Controller.current_zone.add_child(door)
 			door.show()
 			combo_correct = true
 		else:
