@@ -75,23 +75,21 @@ func _ready() -> void:
 
 	# start_level called by Zone on tree enter
 	zone_tween.connect("tween_all_completed", self, "_goto_zone_sig")
-
+# Call to play a sound
 func play_sound(name: String, pos = null):
 	sounds[name].stop()
 	if pos != null:
 		sounds[name].position = pos
 	sounds[name].play()
-
+# Set sounds to playing or not
 func sound_playing(name: String, playing: bool, pos = null):
 	if sounds[name].playing != playing:
 		sounds[name].playing = playing
 	if pos != null:
 		sounds[name].position = pos
-
 # Called when transition to new zone is complete
 func _goto_zone_sig():
 	goto_zone(goto_zonename, goto_from_node, goto_to_node, goto_trans)
-
 # Called when entering a new level
 func start_level():
 	if current_zone != null:
@@ -113,7 +111,7 @@ func start_level():
 	# Add main camera
 	main_camera = _main_camera.instance()
 	current_zone.add_child(main_camera)
-
+# Called when entire level tree is ready
 func ready_level():
 	assert(current_zone != null, "start from the start scene!")
 	
@@ -123,6 +121,11 @@ func ready_level():
 		level_controller.get_parent().remove_child(level_controller)
 		self.add_child(level_controller)
 
+	# Recurse and initialize zones
+	for child in current_zone.get_children():
+		if child.get("to_zone"):
+			load_zone(child.to_zone)
+# Called by external to goto a zone with a zooming animation
 func goto_zone_animate(zone_name: String, from_node: Node2D, to_node: Node2D, trans: int):
 	if not player.frozen:
 		goto_zonename = zone_name
@@ -173,7 +176,7 @@ func goto_zone_animate(zone_name: String, from_node: Node2D, to_node: Node2D, tr
 				player.z_index = 20
 				from_node.add_child(zone_clone)
 		zone_tween.start()
-
+# Loads a zone
 func load_zone(zone_name: String) -> Zone:
 	# Add new zone to dictionary
 	if not zones.has(zone_name):
@@ -197,9 +200,8 @@ func clone_zone(zone_name: String) -> Zone:
 		zone.remove_child(zone.get_node("player"))
 	if zone.get_node("main_camera"):
 		zone.remove_child(zone.get_node("main_camera"))
-	set_owner_rec(zone, zone)
 	return zone
-
+# Called by Tween when goto zone animation is complete
 func goto_zone(zone_name: String, from_node: Node2D, to_node: Node2D, trans: int):
 	var last_zone_name = current_zone.zone_name
 
@@ -246,20 +248,17 @@ func goto_zone(zone_name: String, from_node: Node2D, to_node: Node2D, trans: int
 		if not current_zone.has_node("exit"):
 			current_zone.add_child(_exit.instance())
 		var exit = current_zone.get_node("exit")
-		exit.exit_to = last_zone_name
+		exit.to_zone = last_zone_name
 		exit.position = current_zone.get_node("player_spawn").position
 		assert(from_node)
 		exit.exit_node = from_node
-	
-	# Ensure correct ownership
-	set_owner_rec(current_zone, current_zone)
 	
 	# Notify level controller
 	if level_controller != null:
 		level_controller.zone_change()
 	
 	player.frozen = false
-
+# Goes to a new level
 func goto_level(name: String):
 	self.level_name = name
 	if level_controller != null:
@@ -271,8 +270,7 @@ func goto_level(name: String):
 	zones.clear()
 	var err = get_tree().change_scene("res://levels/%s/start.tscn" % level_name)
 	assert(err == OK)
-
+# Handler for input events
 func _input(event):
 	if event.is_action_pressed("restart"):
 		goto_level(level_name)
-

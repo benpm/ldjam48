@@ -1,6 +1,5 @@
-extends Interactable
+extends ZoneTeleport
 
-var exit_to: String
 var exit_node: Node2D
 
 func _enter_tree():
@@ -14,7 +13,7 @@ func interacted_with(item: Item):
 	if item == null:
 		assert(exit_node)
 		Controller.play_sound("outof_bag")
-		Controller.goto_zone_animate(exit_to, self, exit_node, Controller.Trans.outof_container)
+		Controller.goto_zone_animate(to_zone, self, exit_node, Controller.Trans.outof_container)
 
 func can_interact(item) -> bool:
 	return item == null

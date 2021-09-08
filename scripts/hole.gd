@@ -1,6 +1,4 @@
-extends Interactable
-
-export(String) var to_zone
+extends ZoneTeleport
 
 func _enter_tree():
 	self.does_something = true

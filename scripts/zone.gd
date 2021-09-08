@@ -8,10 +8,10 @@ var clone: bool = false
 
 func _enter_tree():
 	if not clone and get_zone_name() == "start":
-		$"/root/Controller".start_level()
+		Controller.start_level()
 
 func _ready():
-	$"/root/Controller".ready_level()
+	Controller.ready_level()
 
 func get_zone_name() -> String:
 	if not zone_name:
