@@ -1,4 +1,7 @@
 # **I Stole a Wizard's Sack and All I Got Was This Lousy Infinite Pocket Universe** (working title)
+
+![image](https://user-images.githubusercontent.com/10006314/143790537-ae275ea2-dc69-40a9-93c1-aac59aea06c0.png)
+
 *[Ludum Dare 48 Entry](https://ldjam.com/events/ludum-dare/48/i-stole-a-wizards-sack-and-all-i-got-was-this-lousy-infinite-pocket-universe) - Theme: "Deeper and Deeper"*
 
 2D top-down puzzle game with recursion, non-euclidean levels, and other head-fuckery. Made with Godot Engine
